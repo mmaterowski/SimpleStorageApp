@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 class ListManager
 {
 	static List<Glassware> glass = new List<Glassware>();
-	private static int id;
 
 	public static void ShowStorage()
 	{
 		IsStorageEmpty();
 		PrintStorage();
 		SummarizeEquipment();
+		Console.ReadKey();
 	}
 
 	private static void IsStorageEmpty()
@@ -28,7 +28,7 @@ class ListManager
 	{
 		foreach (Glassware piece in glass)
 		{
-			Console.WriteLine("Name{0}, ID:{1}, Velocity: {2} ml, Price: {3}$", piece, piece.ThisItemID, piece.velocity, piece.price);
+			Console.WriteLine("Name: {0}, ID:{1}, Velocity: {2} ml, Price: {3}$", piece, piece.ThisItemID, piece.velocity, piece.price);
 		}
 	}
 
@@ -40,44 +40,46 @@ class ListManager
 
 	public static void AddItem(int option)
 	{
-		if (option == 1)
-			glass.Add(Beaker.AddBeaker());
-		if (option == 2)
-			glass.Add(Flask.AddFlask());
-		else
+		if (option !=1 && option !=2)
 		{
 			Console.WriteLine("Wrong choice!");
 		}
-
+		else if (option == 1)
+			glass.Add(Beaker.AddBeaker());
+		else if (option == 2)
+			glass.Add(Flask.AddFlask());
+		
+		Console.ReadKey();
 	}
 
 
 	public static void DeleteItem()
 	{
-		id = WhichItem();
-		GoThruList();
+		if (glass.Count == 0)
+		{
+			Console.WriteLine("The storage is empty");
+		}
+		else
+		{
+			Console.WriteLine("Give ID of item which you intent to throw out");
+			int id = MainMenu.InputNumber();
+			GoThruList(id);
+		}
+		Console.ReadLine();
 
 	}
 
-	private static int WhichItem()
-	{
-		Console.WriteLine("Give ID of item which you intent to throw out");
-		int id = Int32.Parse(Console.ReadLine());
-		return id;
-	}
-
-	private static void GoThruList()
+	private static void GoThruList(int id)
 	{
 		foreach (Glassware piece in glass)
 		{
 			if (piece.ThisItemID == id)
 			{
 				ConfirmDelete(piece);
-				break;
+				return;
 			}
-
-
 		}
+		Console.WriteLine("I didn't find piece of this ID");
 	}
 
 	private static void ThrowOutThisItem(Glassware piece)
@@ -106,6 +108,7 @@ class ListManager
 		else
 		{
 			Console.WriteLine("Wrong choice");
+			ConfirmDelete(piece);
 		}
 
 		}

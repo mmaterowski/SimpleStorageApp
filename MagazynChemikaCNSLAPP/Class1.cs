@@ -91,13 +91,27 @@ namespace MagazynChemikaCNSLAPP
             PriceOfAllGlassware += price;
         }
 
-        public static Beaker AddBeaker()
+		public override string ToString()
+		{
+			string temp = "Beaker";
+			return temp;
+		}
+
+		public static Beaker AddBeaker()
         {
             Console.WriteLine("Give velocity");
-            int vel = Int32.Parse(Console.ReadLine());
-            Beaker obj = new Beaker(vel*0.12F, vel);
-            Console.WriteLine("Beaker of velocity {0} ml added. It costed {1}$.", obj.velocity, obj.price);
-            return obj;
+			int vel = MainMenu.InputNumber();
+			if (vel > 0)
+			{
+				Beaker obj = new Beaker(vel * 0.12F, vel);
+				Console.WriteLine("Beaker of velocity {0} ml added. It costed {1}$.", obj.velocity, obj.price);
+				return obj;
+			}
+			else
+			{
+				Console.WriteLine("The velocity must be a number greater than 0, try again");
+				return AddBeaker();
+			}
         }
 
 
@@ -116,14 +130,28 @@ namespace MagazynChemikaCNSLAPP
             PriceOfAllGlassware += price;
         }
 
-        public static Flask AddFlask()
+		public override string ToString()
+		{
+			string temp = "Flask";
+			return temp;
+		}
+
+		public static Flask AddFlask()
         {
             Console.WriteLine("Give velocity");
-            int vel = Int32.Parse(Console.ReadLine());
-            Flask obj = new Flask(vel*0.2F, vel);
-            Console.WriteLine("Flask of velocity {0} ml added. It costed {1}$.", obj.velocity, obj.price);
-            return obj;
-        }
+			int vel = MainMenu.InputNumber();
+			if (vel > 0)
+			{
+				Flask obj = new Flask(vel * 0.2F, vel);
+				Console.WriteLine("Flask of velocity {0} ml added. It costed {1}$.", obj.velocity, obj.price);
+				return obj;
+			}
+			else
+			{
+				Console.WriteLine("The velocity must be a number greater than 0, try again");
+				return AddFlask();
+			}
+		}
 
 
     }
