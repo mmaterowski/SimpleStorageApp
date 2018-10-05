@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MagazynChemikaCNSLAPP.Abstract;
+using MagazynChemikaCNSLAPP.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,8 @@ namespace MagazynChemikaCNSLAPP
 	{
 		static void Main(string[] args)
 		{
-			MainMenu.Run();
+			WashingMachine washMachine = new WashingMachine();
+			MainMenu.Run(washMachine);
 		}
 
 	}

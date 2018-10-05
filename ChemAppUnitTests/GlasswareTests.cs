@@ -1,30 +1,41 @@
-﻿using MagazynChemikaCNSLAPP;
+﻿
+using MagazynChemikaCNSLAPP;
+using MagazynChemikaCNSLAPP.Abstract;
+using MagazynChemikaCNSLAPP.Concrete;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChemAppUnitTests
 {
 	[TestClass]
 	public class GlasswareTests
 	{
-		class TestGlass : Glassware
+		private class TestGlass : Glassware
 		{
+			private IWashable washingMethod;
+			public TestGlass(IWashable washingMethod) : base(washingMethod)
+			{
+				this.washingMethod = washingMethod;
+			}
 
+			public void Wash()
+			{
+				washingMethod.Wash(this);
+			}
 		}
 
 		[TestMethod]
 		public void Can_Wash_Glassware()
 		{
 			//Arrange
-			TestGlass glass = new TestGlass();
+			IWashable washingMachine = new WashingMachine();
+			TestGlass glass = new TestGlass(washingMachine);
 			glass.IsClean = false;
 
 			//Act
-			glass.Wash;
+			glass.Wash();
+
+			//Assert
+			Assert.AreEqual(true, glass.IsClean);
 
 		}
 	}

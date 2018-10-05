@@ -1,9 +1,12 @@
-﻿using System;
+﻿using MagazynChemikaCNSLAPP.Abstract;
+using System;
 
 namespace MagazynChemikaCNSLAPP
 {
-	public abstract class Glassware
+	public abstract class Glassware : IWashable
 	{
+		private IWashable washingMethod;
+
 		public string Name { get; set; }
 		public float price;
 		public static float PriceOfAllGlassware;
@@ -13,6 +16,11 @@ namespace MagazynChemikaCNSLAPP
 		public bool IsClean;
 		public string CurrentState;
 		protected int quality = 100;
+
+		public Glassware(IWashable washingMethod)
+		{
+			this.washingMethod = washingMethod;
+		}
 
 
 		Random UsingGlassware = new Random();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MagazynChemikaCNSLAPP.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace MagazynChemikaCNSLAPP
 
 		static MainMenu AppController = new MainMenu();
 
-		public static void Run()
+		public static void Run(IWashable washingMethod)
 		{
 			while (true)
 			{
@@ -26,7 +27,7 @@ namespace MagazynChemikaCNSLAPP
 						break;
 					case 2:
 						{
-							ListManager.AddItem(ItemChoice());
+							ListManager.AddItem(ItemChoice(),washingMethod);
 						}
 						break;
 					case 3:

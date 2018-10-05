@@ -3,7 +3,7 @@ using System;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
-	class WashingMachine : IWashable
+	public class WashingMachine : IWashable
 	{
 		public void Wash(Glassware glassObject)
 		{

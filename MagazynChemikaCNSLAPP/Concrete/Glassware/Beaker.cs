@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MagazynChemikaCNSLAPP.Abstract;
+using System;
 
 namespace MagazynChemikaCNSLAPP
 {
 	class Beaker : Glassware
 	{
-		public Beaker(float price, int velocity)
+		public Beaker(IWashable washingMethod,float price, int velocity) : base(washingMethod)
 		{
 			this.price = price;
 			this.velocity = velocity;
@@ -20,20 +21,20 @@ namespace MagazynChemikaCNSLAPP
 			return temp;
 		}
 
-		public static Beaker AddBeaker()
+		public static Beaker AddBeaker(IWashable washingMethod)
 		{
 			Console.WriteLine("Give velocity");
 			int vel = MainMenu.InputNumber();
 			if (vel > 0)
 			{
-				Beaker obj = new Beaker(vel * 0.12F, vel);
+				Beaker obj = new Beaker(washingMethod,vel * 0.12F, vel);
 				Console.WriteLine("Beaker of velocity {0} ml added. It costed {1}$.", obj.velocity, obj.price);
 				return obj;
 			}
 			else
 			{
 				Console.WriteLine("The velocity must be a number greater than 0, try again");
-				return AddBeaker();
+				return AddBeaker(washingMethod);
 			}
 		}
 
