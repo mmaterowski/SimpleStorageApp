@@ -9,14 +9,14 @@ namespace MagazynChemikaCNSLAPP
 		public int velocity;
 		public static int ItemCounter = 0;
 		public int ThisItemID;
-		protected bool IsClean;
+		public bool IsClean;
 		public string CurrentState;
 		protected int quality = 100;
 
 
 		Random UsingGlassware = new Random();
 
-		protected virtual void Wash(Glassware obj)
+		public virtual void Wash(Glassware obj)
 		{
 			if (obj.IsClean)
 			{

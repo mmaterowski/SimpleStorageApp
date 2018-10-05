@@ -43,17 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Beaker.cs" />
-    <Compile Include="Flask.cs" />
-    <Compile Include="Glassware.cs" />
-    <Compile Include="MainMenu.cs" />
-    <Compile Include="ListManager.cs" />
+    <Compile Include="Abstract\IQualityControl.cs" />
+    <Compile Include="Abstract\IUsable.cs" />
+    <Compile Include="Abstract\IWashable.cs" />
+    <Compile Include="Concrete\Beaker.cs" />
+    <Compile Include="Concrete\Flask.cs" />
+    <Compile Include="Concrete\Glassware.cs" />
+    <Compile Include="Concrete\MainMenu.cs" />
+    <Compile Include="Concrete\ListManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
