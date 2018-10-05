@@ -4,6 +4,7 @@ namespace MagazynChemikaCNSLAPP
 {
 	public abstract class Glassware
 	{
+		public string Name { get; set; }
 		public float price;
 		public static float PriceOfAllGlassware;
 		public int velocity;

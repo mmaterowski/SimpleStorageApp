@@ -46,11 +46,12 @@
     <Compile Include="Abstract\IQualityControl.cs" />
     <Compile Include="Abstract\IUsable.cs" />
     <Compile Include="Abstract\IWashable.cs" />
-    <Compile Include="Concrete\Beaker.cs" />
-    <Compile Include="Concrete\Flask.cs" />
-    <Compile Include="Concrete\Glassware.cs" />
+    <Compile Include="Concrete\Glassware\Beaker.cs" />
+    <Compile Include="Concrete\Glassware\Flask.cs" />
+    <Compile Include="Concrete\Glassware\Glassware.cs" />
     <Compile Include="Concrete\MainMenu.cs" />
     <Compile Include="Concrete\ListManager.cs" />
+    <Compile Include="Concrete\WashingMachine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
