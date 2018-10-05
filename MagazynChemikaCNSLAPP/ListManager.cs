@@ -1,9 +1,6 @@
 ﻿using MagazynChemikaCNSLAPP;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 class ListManager
@@ -40,7 +37,7 @@ class ListManager
 
 	public static void AddItem(int option)
 	{
-		if (option !=1 && option !=2)
+		if (option != 1 && option != 2)
 		{
 			Console.WriteLine("Wrong choice!");
 		}
@@ -48,7 +45,7 @@ class ListManager
 			glass.Add(Beaker.AddBeaker());
 		else if (option == 2)
 			glass.Add(Flask.AddFlask());
-		
+
 		Console.ReadKey();
 	}
 
@@ -111,8 +108,7 @@ class ListManager
 			ConfirmDelete(piece);
 		}
 
-		}
 	}
+}
 
-	
-	
+
