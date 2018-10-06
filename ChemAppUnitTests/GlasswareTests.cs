@@ -29,8 +29,7 @@ namespace ChemAppUnitTests
 			//Arrange
 			IWashable washingMachine = new WashingMachine();
 			TestGlass glass = new TestGlass(washingMachine);
-			glass.IsClean = false;
-
+			glass.IsClean = true;
 			//Act
 			glass.Wash();
 
@@ -38,5 +37,20 @@ namespace ChemAppUnitTests
 			Assert.AreEqual(true, glass.IsClean);
 
 		}
+
+		[TestMethod]
+		public void Quality_Of_Glassware_Can_Change()
+		{
+			//Arrange
+			IWashable washingMachine = new WashingMachine();
+			TestGlass glass = new TestGlass(washingMachine);
+
+			//Act
+			glass.Use(glass);
+
+			//Assert
+			Assert.AreNotEqual(100, glass.Quality);
+		}
 	}
 }
+

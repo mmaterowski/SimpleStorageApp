@@ -10,8 +10,6 @@ namespace MagazynChemikaCNSLAPP
 			this.Price = price;
 			this.Velocity = velocity;
 			ItemID = ItemCounter++;
-			Quality = 100;
-			CurrentState = "New";
 			PriceOfAllGlassware += price;
 		}
 

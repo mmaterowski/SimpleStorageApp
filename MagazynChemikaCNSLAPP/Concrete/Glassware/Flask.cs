@@ -11,13 +11,11 @@ namespace MagazynChemikaCNSLAPP
 		{
 		}
 
-		public Flask(IWashable washingMethod, float price, int velocity) : base(washingMethod)
+		public Flask(IWashable washingMethod, decimal price, int velocity) : base(washingMethod)
 		{
 			this.Price = price;
 			this.Velocity = velocity;
 			ItemID = ItemCounter++;
-			Quality = 100;
-			CurrentState = "New";
 			PriceOfAllGlassware += price;
 		}
 
@@ -33,7 +31,7 @@ namespace MagazynChemikaCNSLAPP
 			int vel = MainMenu.InputNumber();
 			if (vel > 0)
 			{
-				Flask obj = new Flask(washingMethod, vel * 0.2F, vel);
+				Flask obj = new Flask(washingMethod, (decimal)vel * 0.2M, vel);
 				Console.WriteLine("Flask of velocity {0} ml added. It costed {1}$.", obj.Velocity, obj.Price);
 				return obj;
 			}

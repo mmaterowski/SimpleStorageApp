@@ -2,6 +2,6 @@
 {
 	public interface IUsable
 	{
-		void Use(Glassware glassObject);
+		void Use(Glassware glasswareObject);
 	}
 }
