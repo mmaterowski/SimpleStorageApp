@@ -26,7 +26,7 @@ class ListManager
 	{
 		foreach (Glassware piece in glass)
 		{
-			Console.WriteLine("Name: {0}, ID:{1}, Velocity: {2} ml, Price: {3}$", piece, piece.ThisItemID, piece.velocity, piece.price);
+			Console.WriteLine("Name: {0}, ID:{1}, Velocity: {2} ml, Price: {3}$", piece, piece.ItemID, piece.Velocity, piece.Price);
 		}
 	}
 
@@ -71,7 +71,7 @@ class ListManager
 	{
 		foreach (Glassware piece in glass)
 		{
-			if (piece.ThisItemID == id)
+			if (piece.ItemID == id)
 			{
 				ConfirmDelete(piece);
 				return;
@@ -84,7 +84,7 @@ class ListManager
 	{
 		glass.Remove(piece);
 		Glassware.ItemCounter--;
-		Glassware.PriceOfAllGlassware = Glassware.PriceOfAllGlassware - piece.price;
+		Glassware.PriceOfAllGlassware = Glassware.PriceOfAllGlassware - piece.Price;
 		Console.WriteLine("Item has been thrown out.");
 
 	}
@@ -101,7 +101,7 @@ class ListManager
 
 
 		else if (choice == "n")
-			Console.WriteLine("Item of id: {0} wasn't deleted", piece.ThisItemID);
+			Console.WriteLine("Item of id: {0} wasn't deleted", piece.ItemID);
 
 		else
 		{

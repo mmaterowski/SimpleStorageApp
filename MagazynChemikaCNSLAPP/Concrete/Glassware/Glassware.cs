@@ -7,15 +7,19 @@ namespace MagazynChemikaCNSLAPP
 	{
 		private IWashable washingMethod;
 
-		public string Name { get; set; }
-		public float price;
-		public static float PriceOfAllGlassware;
-		public int velocity;
+		//extract to other class
+		public static decimal PriceOfAllGlassware;
+
+
 		public static int ItemCounter = 0;
-		public int ThisItemID;
-		public bool IsClean;
-		public string CurrentState;
-		protected int quality = 100;
+
+		public string Name { get; set; }
+		public int ItemID { get; set; }
+		public decimal Price { get; set; }
+		public float Velocity { get; set; }
+		public int Quality { get; set; }
+		public string CurrentState { get; set; }
+		public bool IsClean { get; set; }
 
 		public Glassware(IWashable washingMethod)
 		{
@@ -41,7 +45,7 @@ namespace MagazynChemikaCNSLAPP
 
 		protected virtual void Use(Glassware obj)
 		{
-			if (obj.quality < 20)
+			if (obj.Quality < 20)
 			{
 				Console.WriteLine("You cannot use this piece, it's broken and have to be disposed");
 			}
@@ -51,9 +55,9 @@ namespace MagazynChemikaCNSLAPP
 				IsClean = false;
 
 				int temp = obj.UsingGlassware.Next(100);
-				if (temp < obj.quality)
+				if (temp < obj.Quality)
 				{
-					obj.quality = temp;
+					obj.Quality = temp;
 					StateChanger(obj);
 				}
 
@@ -65,14 +69,14 @@ namespace MagazynChemikaCNSLAPP
 
 		protected virtual void StateChanger(Glassware obj)
 		{
-			if (obj.quality == 100) { obj.CurrentState = "New"; }
-			else if (obj.quality > 75) { obj.CurrentState = "Good"; }
-			else if (obj.quality > 25)
+			if (obj.Quality == 100) { obj.CurrentState = "New"; }
+			else if (obj.Quality > 75) { obj.CurrentState = "Good"; }
+			else if (obj.Quality > 25)
 			{
 				obj.CurrentState = "Damaged";
 				Console.WriteLine("Your beaker is now damaged, but You can still use it");
 			}
-			else if (obj.quality <= 20)
+			else if (obj.Quality <= 20)
 			{
 				obj.CurrentState = "ToTrash";
 				Console.WriteLine("You broke this piece !");
