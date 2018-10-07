@@ -36,16 +36,16 @@ class ListManager
 		Console.WriteLine("Total items:{0} \t Total value: {1:N2}$", Glassware.ItemCounter, Glassware.PriceOfAllGlassware);
 	}
 
-	public static void AddItem(int option,IWashable washingMethod)
+	public static void AddItem(int option,IWashable washingMethod,ILabWork labWork)
 	{
 		if (option != 1 && option != 2)
 		{
 			Console.WriteLine("Wrong choice!");
 		}
 		else if (option == 1)
-			glass.Add(Beaker.AddBeaker(washingMethod));
+			glass.Add(Beaker.AddBeaker(washingMethod,labWork));
 		else if (option == 2)
-			glass.Add(Flask.AddFlask(washingMethod));
+			glass.Add(Flask.AddFlask(washingMethod,labWork));
 
 		Console.ReadKey();
 	}
@@ -92,7 +92,7 @@ class ListManager
 	private static void ConfirmDelete(Glassware piece)
 
 	{
-		Console.WriteLine("Do you want to throw out {0}, quality={1}? \n y/n?", piece.ToString(), piece.CurrentState);
+		Console.WriteLine("Do you want to throw out {0}, quality={1}? \n y/n?", piece.ToString(), piece.Condition);
 		string choice = Console.ReadLine();
 		if (choice == "y")
 		{

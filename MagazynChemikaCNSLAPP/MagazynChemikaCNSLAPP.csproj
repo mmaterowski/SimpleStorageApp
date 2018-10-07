@@ -43,13 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IQualityControl.cs" />
+    <Compile Include="Abstract\ILabWork.cs" />
     <Compile Include="Abstract\IUsable.cs" />
     <Compile Include="Abstract\IWashable.cs" />
     <Compile Include="Concrete\Glassware\Beaker.cs" />
     <Compile Include="Concrete\Glassware\Flask.cs" />
     <Compile Include="Concrete\Glassware\Glassware.cs" />
-    <Compile Include="Abstract\IChangeItemState.cs" />
+    <Compile Include="Abstract\IChangeQuality.cs" />
     <Compile Include="Concrete\MainMenu.cs" />
     <Compile Include="Concrete\ListManager.cs" />
     <Compile Include="Concrete\RandomStateChanger.cs" />

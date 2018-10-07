@@ -3,22 +3,23 @@ using System;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
-	public class RegularLabWork : IChangeItemState
+	public class RegularLabWork : ILabWork
 	{
-		private IChangeItemState stateChanger;
+		private IChangeQuality stateChanger;
+		private IUsable useStyle;
 
-		public RegularLabWork(IChangeItemState stateChangerParam)
+		public RegularLabWork(IChangeQuality stateChangerParam,IUsable useParam)
 		{
 			stateChanger = stateChangerParam;
+			useStyle = useParam;
 		}
 
-		public void Change(Glassware glasswareObject)
+		public void ChangeQuality(Glassware glasswareObject)
 		{
-			UseGlassware(glasswareObject);
-			stateChanger.Change(glasswareObject);
+			stateChanger.ChangeQuality(glasswareObject);
 		}
 
-		private void UseGlassware(Glassware glasswareObject)
+		public void Use(Glassware glasswareObject)
 		{
 			if (glasswareObject.Quality < 20)
 			{
@@ -28,7 +29,7 @@ namespace MagazynChemikaCNSLAPP.Concrete
 			{
 				Console.WriteLine("You've used this piece of glassware, now it's dirty");
 				glasswareObject.IsClean = false;
-				stateChanger.Change(glasswareObject);
+				stateChanger.ChangeQuality(glasswareObject);
 			}
 		}
 	}

@@ -1,14 +1,13 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
-using MagazynChemikaCNSLAPP.Concrete;
 using System;
 
 namespace MagazynChemikaCNSLAPP
 {
-	public abstract class Glassware : IWashable, IUsable
+	public abstract class Glassware : IWashable, ILabWork
 	{
 		private IWashable washingMethod;
-		private IUsable labActivity;
-		private IChangeItemState stateChangerType;
+	//	private IChangeQuality stateChangerType;
+		private ILabWork typeOfLabWork;
 
 
 		//extract to other class
@@ -16,36 +15,19 @@ namespace MagazynChemikaCNSLAPP
 
 
 		public static int ItemCounter = 0;
-		private int _quality;
+
 		public string Name { get; set; }
 		public int ItemID { get; set; }
 		public decimal Price { get; set; }
 		public float Velocity { get; set; }
-		public int Quality
+		public int Quality { get; set; }
+		public string Condition { get; private set; }
+		public bool IsClean { get; set; }
+
+		public Glassware(IWashable washingMethodParam, ILabWork labWorkParam)
 		{
-			get { return _quality; }
-			set { _quality = value; }
-		}
-
-		private string _currentState;
-
-		public string CurrentState
-		{
-			get { return _currentState; }
-			private set { _currentState = value; }
-		}
-
-		private bool _isClean;
-
-		public bool IsClean
-		{
-			get { return _isClean; }
-			set { _isClean = value; }
-		}
-
-		public Glassware(IWashable washingMethod)
-		{
-			this.washingMethod = washingMethod;
+			washingMethod = washingMethodParam;
+			typeOfLabWork = labWorkParam;
 			Quality = 100;
 			IsClean = true;
 		}
@@ -58,29 +40,31 @@ namespace MagazynChemikaCNSLAPP
 
 		public virtual void Use(Glassware glasswareObject)
 		{
-			stateChangerType = new RandomStateChanger();
-			RegularLabWork labWork = new RegularLabWork(stateChangerType);
-			labWork.Change(glasswareObject);
+			typeOfLabWork.Use(glasswareObject);
+		}
+
+		public void ChangeQuality(Glassware glasswareObject)
+		{
+			typeOfLabWork.ChangeQuality(glasswareObject);
 		}
 
 		//Add structur, extract interface
-		public virtual void StateChanger()
+		public virtual void ChangeCondition()
 		{
-			if (Quality == 100) { CurrentState = "New"; }
-			else if (Quality > 75) { CurrentState = "Good"; }
+			if (Quality == 100) { Condition = "New"; }
+			else if (Quality > 75) { Condition = "Good"; }
 			else if (Quality > 25)
 			{
-				CurrentState = "Damaged";
+				Condition = "Damaged";
 				Console.WriteLine("Your beaker is now damaged, but You can still use it");
 			}
 			else if (Quality <= 20)
 			{
-				CurrentState = "ToTrash";
+				Condition = "ToTrash";
 				Console.WriteLine("You broke this piece !");
 			}
 
 		}
-
 
 
 	}
