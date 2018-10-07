@@ -11,15 +11,10 @@ namespace ChemAppUnitTests
 	{
 		private class TestGlass : Glassware
 		{
-			private IWashable washingMethod;
-			public TestGlass(IWashable washingMethod, ILabWork labWork, IConditionChanger conditionChanger) : base(washingMethod, labWork, conditionChanger)
+			private readonly IGlassware labGlass;
+			public TestGlass(IGlassware labGlassParam) : base(labGlassParam)
 			{
-				this.washingMethod = washingMethod;
-			}
-
-			public void Wash()
-			{
-				washingMethod.Wash(this);
+				this.labGlass = labGlassParam;
 			}
 		}
 
@@ -30,14 +25,17 @@ namespace ChemAppUnitTests
 			IWashable washingMachine = new WashingMachine();
 			IConditionChanger conditionChanger = new ChangeConditionBasedOnQuality();
 
-			IUsable useType = new RegularItemUse();
+			IUsable useType = new UseForReaction();
 			IChangeQuality qualityChanger = new RandomQualityChanger();
 			ILabWork labWork = new RegularLabWork(qualityChanger, useType);
-			TestGlass glass = new TestGlass(washingMachine, labWork, conditionChanger);
 
-			glass.IsClean = true;
+			IGlassware labGlass = new LabGlass(conditionChanger, labWork, washingMachine);
+			TestGlass glass = new TestGlass(labGlass)
+			{
+				IsClean = false
+			};
 			//Act
-			glass.Wash();
+			glass.Wash(glass);
 
 			//Assert
 			Assert.AreEqual(true, glass.IsClean);
@@ -51,10 +49,12 @@ namespace ChemAppUnitTests
 			IWashable washingMachine = new WashingMachine();
 			IConditionChanger conditionChanger = new ChangeConditionBasedOnQuality();
 
-			IUsable useType = new RegularItemUse();
+			IUsable useType = new UseForReaction();
 			IChangeQuality qualityChanger = new RandomQualityChanger();
 			ILabWork labWork = new RegularLabWork(qualityChanger, useType);
-			TestGlass glass = new TestGlass(washingMachine, labWork, conditionChanger);
+
+			IGlassware labGlass = new LabGlass(conditionChanger, labWork, washingMachine);
+			TestGlass glass = new TestGlass(labGlass);
 
 			//Act
 			glass.Use(glass);
@@ -70,18 +70,22 @@ namespace ChemAppUnitTests
 			IWashable washingMachine = new WashingMachine();
 			IConditionChanger conditionChanger = new ChangeConditionBasedOnQuality();
 
-			IUsable useType = new RegularItemUse();
+			IUsable useType = new UseForReaction();
 			IChangeQuality qualityChanger = new RandomQualityChanger();
 			ILabWork labWork = new RegularLabWork(qualityChanger, useType);
-			TestGlass testGlass = new TestGlass(washingMachine, labWork, conditionChanger);
+
+			IGlassware labGlass = new LabGlass(conditionChanger, labWork, washingMachine);
+			TestGlass glass = new TestGlass(labGlass)
+			{
+				Condition = "New",
+				Quality = 50
+			};
 
 			//Act
-			testGlass.Condition = "New";
-			testGlass.Quality = 50;
-			testGlass.ChangeCondition(testGlass);
+			glass.ChangeCondition(glass);
 
 			//Assert
-			Assert.AreEqual("Damaged", testGlass.Condition);
+			Assert.AreEqual("Damaged", glass.Condition);
 		}
 	}
 }

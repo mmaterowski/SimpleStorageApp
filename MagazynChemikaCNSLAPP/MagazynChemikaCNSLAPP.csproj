@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IConditionChanger.cs" />
+    <Compile Include="Abstract\IGlassware.cs" />
     <Compile Include="Abstract\ILabWork.cs" />
     <Compile Include="Abstract\IUsable.cs" />
     <Compile Include="Abstract\IWashable.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Concrete\Glassware\Flask.cs" />
     <Compile Include="Concrete\Glassware\Glassware.cs" />
     <Compile Include="Abstract\IChangeQuality.cs" />
+    <Compile Include="Concrete\LabGlass.cs" />
     <Compile Include="Concrete\MainMenu.cs" />
     <Compile Include="Concrete\ListManager.cs" />
     <Compile Include="Concrete\RandomQualityChanger.cs" />

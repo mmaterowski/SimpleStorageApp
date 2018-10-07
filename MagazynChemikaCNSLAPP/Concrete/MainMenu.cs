@@ -9,7 +9,7 @@ namespace MagazynChemikaCNSLAPP
 
 		static MainMenu AppController = new MainMenu();
 
-		public static void Run(IWashable washingMethod, ILabWork labWork,IConditionChanger conditionChanger)
+		public static void Run(IGlassware labGlass)
 		{
 			while (true)
 			{
@@ -23,7 +23,7 @@ namespace MagazynChemikaCNSLAPP
 						break;
 					case 2:
 						{
-							ListManager.AddItem(ItemChoice(), washingMethod, labWork,conditionChanger);
+							//ListManager.AddItem(ItemChoice(), labGlass);
 						}
 						break;
 					case 3:

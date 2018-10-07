@@ -2,12 +2,9 @@
 
 namespace MagazynChemikaCNSLAPP
 {
-	public abstract class Glassware : IWashable, ILabWork
+	public abstract class Glassware : IGlassware
 	{
-		private IWashable washingMethod;
-		private ILabWork typeOfLabWork;
-		private IConditionChanger conditionChanger;
-
+		private IGlassware labGlassware;
 		//extract to other class
 		public static decimal PriceOfAllGlassware;
 
@@ -24,7 +21,7 @@ namespace MagazynChemikaCNSLAPP
 			get => _quality;
 			set
 			{
-				if (this.Quality != value)
+				if (Quality != value)
 				{
 					ChangeCondition(this);
 					_quality = value;
@@ -34,35 +31,32 @@ namespace MagazynChemikaCNSLAPP
 		public string Condition { get; set; }
 		public bool IsClean { get; set; }
 
-		public Glassware(IWashable washingMethodParam, ILabWork labWorkParam, IConditionChanger conditionChangerParam)
+		public Glassware(IGlassware labGlassware)
 		{
-			washingMethod = washingMethodParam;
-			typeOfLabWork = labWorkParam;
-			conditionChanger = conditionChangerParam;
+			this.labGlassware = labGlassware;
 			Quality = 100;
 			IsClean = true;
 		}
 
 		public void Wash(Glassware glasswareObject)
 		{
-			washingMethod.Wash(glasswareObject);
+			labGlassware.Wash(glasswareObject);
 		}
 
 
 		public void Use(Glassware glasswareObject)
 		{
-			typeOfLabWork.Use(glasswareObject);
+			labGlassware.Use(glasswareObject);
 		}
 
 		public void ChangeQuality(Glassware glasswareObject)
 		{
-			typeOfLabWork.ChangeQuality(glasswareObject);
+			labGlassware.ChangeQuality(glasswareObject);
 		}
 
-		//Add structur, extract interface
 		public void ChangeCondition(Glassware glassware)
 		{
-			conditionChanger.ChangeCondition(glassware);
+			labGlassware.ChangeCondition(glassware);
 		}
 
 

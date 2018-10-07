@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
-	public class RegularItemUse : IUsable
+	public class UseForReaction : IUsable
 	{
 		public void Use(Glassware glasswareObject)
 		{

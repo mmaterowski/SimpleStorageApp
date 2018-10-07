@@ -11,9 +11,11 @@ namespace MagazynChemikaCNSLAPP
 			IConditionChanger conditionChanger = new ChangeConditionBasedOnQuality();
 
 			IChangeQuality qualityChanger = new RandomQualityChanger();
-			IUsable labActivity = new RegularItemUse();
+			IUsable labActivity = new UseForReaction();
 			ILabWork labWork = new RegularLabWork(qualityChanger, labActivity);
-			MainMenu.Run(washMachine, labWork, conditionChanger);
+
+			IGlassware labGlass = new LabGlass(conditionChanger,labWork, washMachine);
+			MainMenu.Run(labGlass);
 		}
 
 	}

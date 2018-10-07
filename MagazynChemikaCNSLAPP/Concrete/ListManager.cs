@@ -1,5 +1,4 @@
 ﻿using MagazynChemikaCNSLAPP;
-using MagazynChemikaCNSLAPP.Abstract;
 using System;
 using System.Collections.Generic;
 
@@ -36,19 +35,20 @@ class ListManager
 		Console.WriteLine("Total items:{0} \t Total value: {1:N2}$", Glassware.ItemCounter, Glassware.PriceOfAllGlassware);
 	}
 
-	public static void AddItem(int option,IWashable washingMethod,ILabWork labWork,IConditionChanger conditionChanger)
+	/*public static void AddItem(int option, IGlassware labGlass)
 	{
 		if (option != 1 && option != 2)
 		{
 			Console.WriteLine("Wrong choice!");
 		}
 		else if (option == 1)
-			glass.Add(Beaker.AddBeaker(washingMethod,labWork,conditionChanger));
+			glass.Add(Beaker.AddBeaker());
 		else if (option == 2)
-			glass.Add(Flask.AddFlask(washingMethod,labWork,conditionChanger));
+			glass.Add(Flask.AddFlask());
 
 		Console.ReadKey();
 	}
+	*/
 
 
 	public static void DeleteItem()
