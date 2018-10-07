@@ -3,7 +3,7 @@ using System;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
-	public class RandomStateChanger : IChangeQuality
+	public class RandomQualityChanger : IChangeQuality
 	{
 		public void ChangeQuality(Glassware glasswareObject)
 		{

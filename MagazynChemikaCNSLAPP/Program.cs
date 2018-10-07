@@ -1,10 +1,5 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
 using MagazynChemikaCNSLAPP.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MagazynChemikaCNSLAPP
 {
@@ -12,13 +7,18 @@ namespace MagazynChemikaCNSLAPP
 	{
 		static void Main(string[] args)
 		{
-			WashingMachine washMachine = new WashingMachine();
-			MainMenu.Run(washMachine);
+			IWashable washMachine = new WashingMachine();
+			IConditionChanger conditionChanger = new ChangeConditionBasedOnQuality();
+
+			IChangeQuality qualityChanger = new RandomQualityChanger();
+			IUsable labActivity = new RegularItemUse();
+			ILabWork labWork = new RegularLabWork(qualityChanger, labActivity);
+			MainMenu.Run(washMachine, labWork, conditionChanger);
 		}
 
 	}
 }
 
-   
+
 
 

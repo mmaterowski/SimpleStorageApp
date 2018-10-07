@@ -1,9 +1,5 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MagazynChemikaCNSLAPP
 {
@@ -13,7 +9,7 @@ namespace MagazynChemikaCNSLAPP
 
 		static MainMenu AppController = new MainMenu();
 
-		public static void Run(IWashable washingMethod)
+		public static void Run(IWashable washingMethod, ILabWork labWork,IConditionChanger conditionChanger)
 		{
 			while (true)
 			{
@@ -27,7 +23,7 @@ namespace MagazynChemikaCNSLAPP
 						break;
 					case 2:
 						{
-							ListManager.AddItem(ItemChoice(),washingMethod);
+							ListManager.AddItem(ItemChoice(), washingMethod, labWork,conditionChanger);
 						}
 						break;
 					case 3:
@@ -42,17 +38,17 @@ namespace MagazynChemikaCNSLAPP
 						}
 						break;
 					default:
-							{
-								Console.WriteLine("Wrong choice!");
-								Console.ReadKey();
+						{
+							Console.WriteLine("Wrong choice!");
+							Console.ReadKey();
 							break;
-							}
-
 						}
+
+				}
 				Console.Clear();
 			}
-	
-			}
+
+		}
 
 
 

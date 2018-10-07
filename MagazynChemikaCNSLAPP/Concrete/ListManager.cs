@@ -36,16 +36,16 @@ class ListManager
 		Console.WriteLine("Total items:{0} \t Total value: {1:N2}$", Glassware.ItemCounter, Glassware.PriceOfAllGlassware);
 	}
 
-	public static void AddItem(int option,IWashable washingMethod,ILabWork labWork)
+	public static void AddItem(int option,IWashable washingMethod,ILabWork labWork,IConditionChanger conditionChanger)
 	{
 		if (option != 1 && option != 2)
 		{
 			Console.WriteLine("Wrong choice!");
 		}
 		else if (option == 1)
-			glass.Add(Beaker.AddBeaker(washingMethod,labWork));
+			glass.Add(Beaker.AddBeaker(washingMethod,labWork,conditionChanger));
 		else if (option == 2)
-			glass.Add(Flask.AddFlask(washingMethod,labWork));
+			glass.Add(Flask.AddFlask(washingMethod,labWork,conditionChanger));
 
 		Console.ReadKey();
 	}
