@@ -2,6 +2,6 @@
 {
 	public interface IConditionChanger
 	{
-		void ChangeCondition(Glassware glassware);
+		void ChangeCondition(IGlassware glassware);
 	}
 }

@@ -3,9 +3,9 @@ using System;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
-	public class RandomQualityChanger : IChangeQuality
+	public class RandomQualityChanger : IQualityControl
 	{
-		public void ChangeQuality(Glassware glasswareObject)
+		public void ChangeQuality(IGlassware glasswareObject)
 		{
 			Random rand = new Random();
 			int randomValue = rand.Next(0, 100);

@@ -8,14 +8,15 @@ namespace MagazynChemikaCNSLAPP
 	{
 		private int input;
 
-		static MainMenu AppController = new MainMenu();
 
-		public static void Run(Storage myStorage, ISupplier supplier)
+
+		public void Run(Storage myStorage, ISupplier supplier)
 		{
 			while (true)
 			{
-				AppController.Welcome();
-				switch (AppController.InputFromUser())
+				Welcome();
+				GetInputFromUser();
+				switch (input)
 				{
 					case 1:
 						{
@@ -29,7 +30,8 @@ namespace MagazynChemikaCNSLAPP
 							supplier.DisplayProductsList(listOfProducts);
 
 							Console.WriteLine("Please,type product ID to buy:");
-							int productID = InputNumber();
+							GetInputFromUser();
+							int productID = input;
 							var productDataString = listOfProducts[productID];
 
 							var productDataTable = productDataString.Split(',');
@@ -38,7 +40,7 @@ namespace MagazynChemikaCNSLAPP
 
 							//figure out where and how to assing product IDs
 							var rand = new Random();
-							var piece = new PieceOfGlassware
+							var piece = new Glassware
 							{
 								Name = productData.Name,
 								Volume = productData.Volume,
@@ -47,6 +49,8 @@ namespace MagazynChemikaCNSLAPP
 							};
 
 							myStorage.AddItem(piece);
+							Console.WriteLine($"Item {piece.Name} was added!");
+							Console.ReadKey();
 
 
 						}
@@ -55,9 +59,10 @@ namespace MagazynChemikaCNSLAPP
 						{
 							Console.WriteLine("This is list of Your products, type ID if You want to throw it out");
 							myStorage.ShowStorage();
-							Console.WriteLine("Type ID of item which you intent to throw out");
-							int productId = InputNumber();
-							myStorage.DeleteItem(productId);
+							GetInputFromUser();
+							myStorage.DeleteItem(input);
+							Console.WriteLine($"Item with {input} was thrown out!");
+							Console.ReadLine();
 						}
 						break;
 					case 4:
@@ -83,79 +88,30 @@ namespace MagazynChemikaCNSLAPP
 
 		public void Welcome()
 		{
-			Console.WriteLine("Welcome to your chemistry's magazine!");
+			Console.WriteLine("Welcome to your magazine!");
 			Console.WriteLine("1.Check storage");
 			Console.WriteLine("2.Add item");
 			Console.WriteLine("3.Delete item");
-			Console.WriteLine("4.Change item");
+			Console.WriteLine("4.Use item");
 			Console.WriteLine("____________________________________");
 		}
 
-		public int InputFromUser()
+
+
+
+		private void GetInputFromUser()
 		{
-			if (GetValue())
+			string inputFromUser = Console.ReadLine();
+			if (Int32.TryParse(inputFromUser, out input))
 			{
-				return input;
+				input = Int32.Parse(inputFromUser);
 			}
 			else
-				return -1;
-		}
-
-		private bool GetValue()
-		{
-
 			{
-				try
-				{
-					input = Int16.Parse(Console.ReadLine());
-					return true;
-				}
-
-
-
-				catch (System.FormatException)
-				{
-					Console.WriteLine("Value must be an integer!");
-					return false;
-				}
-
-
+				Console.WriteLine("Please, type a valid input");
 			}
 		}
 
-		private static int ItemChoice()
-		{
-			Console.WriteLine("What do you want to store?");
-			Console.WriteLine("1. Beaker");
-			Console.WriteLine("2. Flask");
-			return InputNumber();
-		}
-
-		public static int InputNumber()
-		{
-			int temp;
-			try
-			{
-				temp = (Int32.Parse(Console.ReadLine()));
-				if (IsReal(temp))
-					return temp;
-				else throw new System.FormatException();
-			}
-			catch (System.FormatException)
-			{
-				return -1;
-			}
-		}
-
-		private static bool IsReal(int temp)
-		{
-			if (temp >= 0)
-			{
-				return true;
-			}
-			else
-				return false;
-		}
 
 	}
 }

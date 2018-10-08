@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
-	public class LabGlass : IGlassware
+	public class LabGlass 
 	{
 		private IConditionChanger conditionChanger;
-		private IWashable washingMethod;
-		private ILabWork labWork;
+		private IWash washingMethod;
+		private ILaboratory labWork;
 
-		public LabGlass(IConditionChanger conditionChangerParam,ILabWork labWorkParam,IWashable washingMethodParam)
+		public LabGlass(IConditionChanger conditionChangerParam,ILaboratory labWorkParam,IWash washingMethodParam)
 		{
 			conditionChanger = conditionChangerParam;
 			labWork = labWorkParam;

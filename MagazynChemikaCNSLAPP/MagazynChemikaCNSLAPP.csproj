@@ -47,24 +47,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IConditionChanger.cs" />
+    <Compile Include="Abstract\IDispose.cs" />
     <Compile Include="Abstract\IGlassware.cs" />
-    <Compile Include="Abstract\ILabWork.cs" />
+    <Compile Include="Abstract\ILaboratory.cs" />
+    <Compile Include="Abstract\IReaction.cs" />
     <Compile Include="Abstract\ISupplier.cs" />
-    <Compile Include="Abstract\IUsable.cs" />
-    <Compile Include="Abstract\IWashable.cs" />
+    <Compile Include="Abstract\IWash.cs" />
     <Compile Include="Concrete\ChangeConditionBasedOnQuality.cs" />
-    <Compile Include="Concrete\Glassware\Beaker.cs" />
-    <Compile Include="Concrete\Glassware\Flask.cs" />
-    <Compile Include="Concrete\Glassware\Glassware.cs" />
-    <Compile Include="Abstract\IChangeQuality.cs" />
+    <Compile Include="Abstract\IQualityControl.cs" />
     <Compile Include="Concrete\LabGlass.cs" />
     <Compile Include="Concrete\MainMenu.cs" />
-    <Compile Include="Concrete\PieceOfGlassware.cs" />
+    <Compile Include="Concrete\Glassware.cs" />
     <Compile Include="Concrete\ProductData.cs" />
     <Compile Include="Concrete\Storage.cs" />
     <Compile Include="Concrete\RandomQualityChanger.cs" />
     <Compile Include="Concrete\RegularItemUse.cs" />
-    <Compile Include="Concrete\RegularLabWork.cs" />
+    <Compile Include="Concrete\Laboratory\ChemicalLaboratory.cs" />
     <Compile Include="Concrete\SupplyingCompany.cs" />
     <Compile Include="Concrete\WashingMachine.cs" />
     <Compile Include="Infrastructure\Bindings.cs" />
@@ -75,7 +73,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Concrete\Glassware\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

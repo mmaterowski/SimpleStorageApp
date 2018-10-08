@@ -5,7 +5,7 @@ namespace MagazynChemikaCNSLAPP.Concrete
 {
 	public class ChangeConditionBasedOnQuality : IConditionChanger
 	{
-		public void ChangeCondition(Glassware glassware)
+		public void ChangeCondition(IGlassware glassware)
 		{
 			if (glassware.Quality == 100) { glassware.Condition = "New"; }
 			else if (glassware.Quality > 75) { glassware.Condition = "Good"; }

@@ -1,6 +1,8 @@
-﻿namespace MagazynChemikaCNSLAPP.Concrete
+﻿using MagazynChemikaCNSLAPP.Abstract;
+
+namespace MagazynChemikaCNSLAPP.Concrete
 {
-	public class PieceOfGlassware
+	public class Glassware : IGlassware
 	{
 		public string Name { get; set; }
 		public int ItemID { get; set; }

@@ -6,7 +6,7 @@ using System.Linq;
 
 public class Storage
 {
-	private List<PieceOfGlassware> storageItems;
+	private List<Glassware> storageItems;
 	private ISupplier supplyCompany;
 	private int _productID;
 
@@ -24,7 +24,7 @@ public class Storage
 	public Storage(ISupplier supplier)
 	{
 		supplyCompany = supplier;
-		storageItems = new List<PieceOfGlassware>();
+		storageItems = new List<Glassware>();
 	}
 	public static decimal PriceOfAllGlassware { get; set; }
 
@@ -44,9 +44,9 @@ public class Storage
 
 	private void PrintStorage()
 	{
-		foreach (PieceOfGlassware piece in storageItems)
+		foreach (Glassware piece in storageItems)
 		{
-			Console.WriteLine($"Name: {piece.Name} ID: {piece.ItemID} Velocity: {piece.Volume}ml Price {piece.Price}");
+			Console.WriteLine($"Name: {piece.Name} ID: {piece.ItemID} Velocity: {piece.Volume}ml Price: {piece.Price}$");
 		}
 	}
 
@@ -56,7 +56,7 @@ public class Storage
 		Console.WriteLine($"Total items:{storageItems.Count} \t Total Value:{PriceOfAllGlassware}");
 	}
 
-	public void AddItem(PieceOfGlassware piece)
+	public void AddItem(Glassware piece)
 	{
 		storageItems.Add(piece);
 	}
@@ -69,7 +69,7 @@ public class Storage
 	{
 		var productToDelete = storageItems.FirstOrDefault(p => p.ItemID == itemID);
 		storageItems.Remove(productToDelete);
-		Console.ReadLine();
+
 
 	}
 

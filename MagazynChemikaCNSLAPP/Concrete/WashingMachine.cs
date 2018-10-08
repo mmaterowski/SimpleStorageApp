@@ -3,9 +3,9 @@ using System;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
-	public class WashingMachine : IWashable
+	public class WashingMachine : IWash
 	{
-		public void Wash(Glassware glassObject)
+		public void Wash(IGlassware glassObject)
 		{
 			if (!glassObject.IsClean)
 			{

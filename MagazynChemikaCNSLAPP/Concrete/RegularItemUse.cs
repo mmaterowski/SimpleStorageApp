@@ -9,7 +9,7 @@ namespace MagazynChemikaCNSLAPP.Concrete
 {
 	public class UseForReaction : IUsable
 	{
-		public void Use(Glassware glasswareObject)
+		public void Use(IGlassware glasswareObject)
 		{
 			if (glasswareObject.Quality < 20)
 			{
