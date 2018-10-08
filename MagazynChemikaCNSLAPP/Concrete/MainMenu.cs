@@ -1,4 +1,5 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
+using MagazynChemikaCNSLAPP.Concrete;
 using System;
 
 namespace MagazynChemikaCNSLAPP
@@ -9,7 +10,7 @@ namespace MagazynChemikaCNSLAPP
 
 		static MainMenu AppController = new MainMenu();
 
-		public static void Run(IGlassware labGlass)
+		public static void Run(Storage myStorage, ISupplier supplier)
 		{
 			while (true)
 			{
@@ -18,17 +19,45 @@ namespace MagazynChemikaCNSLAPP
 				{
 					case 1:
 						{
-							ListManager.ShowStorage();
+							myStorage.ShowStorage();
 						}
 						break;
 					case 2:
 						{
-							//ListManager.AddItem(ItemChoice(), labGlass);
+							var listOfProducts = supplier.GetAvailableProducts();
+							Console.WriteLine("This is list of available items:");
+							supplier.DisplayProductsList(listOfProducts);
+
+							Console.WriteLine("Please,type product ID to buy:");
+							int productID = InputNumber();
+							var productDataString = listOfProducts[productID];
+
+							var productDataTable = productDataString.Split(',');
+
+							var productData = new ProductData(productDataTable[0], int.Parse(productDataTable[1]));
+
+							//figure out where and how to assing product IDs
+							var rand = new Random();
+							var piece = new PieceOfGlassware
+							{
+								Name = productData.Name,
+								Volume = productData.Volume,
+								Price = 100M,
+								ItemID = rand.Next(0, 1000)
+							};
+
+							myStorage.AddItem(piece);
+
+
 						}
 						break;
 					case 3:
 						{
-							ListManager.DeleteItem();
+							Console.WriteLine("This is list of Your products, type ID if You want to throw it out");
+							myStorage.ShowStorage();
+							Console.WriteLine("Type ID of item which you intent to throw out");
+							int productId = InputNumber();
+							myStorage.DeleteItem(productId);
 						}
 						break;
 					case 4:

@@ -2,13 +2,11 @@
 
 namespace MagazynChemikaCNSLAPP
 {
-	public abstract class Glassware : IGlassware
+	public class Glassware : IGlassware
 	{
 		private IGlassware labGlassware;
 		//extract to other class
-		public static decimal PriceOfAllGlassware;
-
-
+		
 		public static int ItemCounter = 0;
 		private int _quality;
 

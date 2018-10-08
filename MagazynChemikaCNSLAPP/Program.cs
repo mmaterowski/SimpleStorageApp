@@ -1,4 +1,5 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
+using MagazynChemikaCNSLAPP.Concrete;
 using Ninject;
 using System.Reflection;
 
@@ -12,8 +13,9 @@ namespace MagazynChemikaCNSLAPP
 			var kernel = new StandardKernel();
 			kernel.Load(Assembly.GetExecutingAssembly());
 			var labGlass = kernel.Get<IGlassware>();
-
-			MainMenu.Run(labGlass);
+			var supplier = new SupplyingCompany();
+			var myStorage = new Storage(supplier);
+			MainMenu.Run(myStorage, supplier);
 		}
 
 	}

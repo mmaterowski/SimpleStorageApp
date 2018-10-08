@@ -5,14 +5,13 @@ namespace MagazynChemikaCNSLAPP
 {
 	public class Flask : Glassware
 	{
-		private IGlassware labGlass;
+
 		public Flask(IGlassware labGlassParam, decimal price, int velocity) : base(labGlassParam)
 		{
-			labGlass = labGlassParam;
+
 			this.Price = price;
 			this.Velocity = velocity;
 			ItemID = ItemCounter++;
-			PriceOfAllGlassware += price;
 		}
 
 		public override string ToString()
@@ -20,7 +19,7 @@ namespace MagazynChemikaCNSLAPP
 			return "Flask" + this.ItemID;
 		}
 
-		public Flask AddFlask()
+		/*public Flask AddFlask()
 		{
 			Console.WriteLine("Give velocity");
 			int vel = MainMenu.InputNumber();
@@ -35,8 +34,6 @@ namespace MagazynChemikaCNSLAPP
 				Console.WriteLine("The velocity must be a number greater than 0, try again");
 				return AddFlask();
 			}
-		}
-
-
+		}*/
 	}
 }

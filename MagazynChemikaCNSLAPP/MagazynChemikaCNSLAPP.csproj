@@ -49,6 +49,7 @@
     <Compile Include="Abstract\IConditionChanger.cs" />
     <Compile Include="Abstract\IGlassware.cs" />
     <Compile Include="Abstract\ILabWork.cs" />
+    <Compile Include="Abstract\ISupplier.cs" />
     <Compile Include="Abstract\IUsable.cs" />
     <Compile Include="Abstract\IWashable.cs" />
     <Compile Include="Concrete\ChangeConditionBasedOnQuality.cs" />
@@ -58,10 +59,13 @@
     <Compile Include="Abstract\IChangeQuality.cs" />
     <Compile Include="Concrete\LabGlass.cs" />
     <Compile Include="Concrete\MainMenu.cs" />
-    <Compile Include="Concrete\ListManager.cs" />
+    <Compile Include="Concrete\PieceOfGlassware.cs" />
+    <Compile Include="Concrete\ProductData.cs" />
+    <Compile Include="Concrete\Storage.cs" />
     <Compile Include="Concrete\RandomQualityChanger.cs" />
     <Compile Include="Concrete\RegularItemUse.cs" />
     <Compile Include="Concrete\RegularLabWork.cs" />
+    <Compile Include="Concrete\SupplyingCompany.cs" />
     <Compile Include="Concrete\WashingMachine.cs" />
     <Compile Include="Infrastructure\Bindings.cs" />
     <Compile Include="Program.cs" />

@@ -13,7 +13,6 @@ namespace MagazynChemikaCNSLAPP
 			this.Price = price;
 			this.Velocity = velocity;
 			ItemID = ItemCounter++;
-			PriceOfAllGlassware += price;
 		}
 
 		public override string ToString()
