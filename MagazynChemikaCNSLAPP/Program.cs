@@ -1,5 +1,6 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
-using MagazynChemikaCNSLAPP.Concrete;
+using Ninject;
+using System.Reflection;
 
 namespace MagazynChemikaCNSLAPP
 {
@@ -7,14 +8,11 @@ namespace MagazynChemikaCNSLAPP
 	{
 		static void Main(string[] args)
 		{
-			IWashable washMachine = new WashingMachine();
-			IConditionChanger conditionChanger = new ChangeConditionBasedOnQuality();
 
-			IChangeQuality qualityChanger = new RandomQualityChanger();
-			IUsable labActivity = new UseForReaction();
-			ILabWork labWork = new RegularLabWork(qualityChanger, labActivity);
+			var kernel = new StandardKernel();
+			kernel.Load(Assembly.GetExecutingAssembly());
+			var labGlass = kernel.Get<IGlassware>();
 
-			IGlassware labGlass = new LabGlass(conditionChanger,labWork, washMachine);
 			MainMenu.Run(labGlass);
 		}
 
