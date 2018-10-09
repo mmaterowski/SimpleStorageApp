@@ -18,11 +18,12 @@ namespace MagazynChemikaCNSLAPP.Concrete.Laboratory
 		public void PerformReaction(IEnumerable<IGlassware> glasswareCollection)
 		{
 			qualityControl.CheckQuality(glasswareCollection);
-			if (!qualityControl.QualityControlFailed)
+			bool allItemsAreClean = maintainer.CheckIfAllItemsAreClean(glasswareCollection);
+			if (!qualityControl.QualityControlFailed && allItemsAreClean)
 			{
 				qualityControl.ChangeQuality(glasswareCollection);
 
-				System.Console.WriteLine();
+				System.Console.WriteLine("Reaction performed. You gain xxx money.");
 			}
 			else
 			{
@@ -30,5 +31,26 @@ namespace MagazynChemikaCNSLAPP.Concrete.Laboratory
 				System.Console.WriteLine("Please, buy new ones and clean dirty ones, before attempting to perform a reaction");
 			}
 		}
+
+		public void WashItem(IGlassware pieceOfGlassware)
+		{
+			maintainer.Wash(pieceOfGlassware);
+		}
+		public void WashDirtyItems(IEnumerable<IGlassware> glasswareCollection)
+		{
+			maintainer.Wash(glasswareCollection);
+		}
+
+		public void PolishItem(IGlassware pieceOfGlassware)
+		{
+			maintainer.Polish(pieceOfGlassware);
+		}
+
+		public void PolishAllItems(IEnumerable<IGlassware> glasswareCollection)
+		{
+			maintainer.PolishAllItems(glasswareCollection);
+		}
+
+
 	}
 }

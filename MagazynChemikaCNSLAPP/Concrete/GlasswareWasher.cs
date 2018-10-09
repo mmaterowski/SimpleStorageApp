@@ -6,17 +6,39 @@ namespace MagazynChemikaCNSLAPP.Concrete
 {
 	public class GlasswareWasher : IWash
 	{
+		public bool CheckIfAllItemsAreClean(IEnumerable<IGlassware> glasswareCollection)
+		{
+			foreach (var pieceOfGlassware in glasswareCollection)
+			{
+				if (!pieceOfGlassware.IsClean)
+				{
+					return false;
+				}
+			}
+			return true;
+
+		}
+
+		public bool CheckIfItemIsClean(IGlassware pieceOfGlassware)
+		{
+			if (pieceOfGlassware.IsClean)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 		public void Wash(IGlassware glassware)
 		{
 			if (!glassware.IsClean)
 			{
 				Console.WriteLine($"I'm starting to wash Your {glassware.ToString()}");
 				SimulateWashingProcess();
+				Console.WriteLine($"Your item {glassware.ToString()} is clean");
 				glassware.IsClean = true;
-			}
-			else
-			{
-				Console.WriteLine($"{glassware.ToString()} is already clean!");
 			}
 		}
 

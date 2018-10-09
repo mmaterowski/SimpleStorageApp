@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MagazynChemikaCNSLAPP.Abstract
 {
-	public interface IMaintainItem :IWash,IPolish
+	public interface IPolish
 	{
+		void Polish(IGlassware pieceOfGlassware);
+		void PolishAllItems(IEnumerable<IGlassware> glasswareCollection);
 	}
 }

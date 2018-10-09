@@ -8,6 +8,7 @@ namespace MagazynChemikaCNSLAPP.Concrete
 	{
 		public void ChangeCondition(IGlassware glassware)
 		{
+			Console.WriteLine();
 			if (glassware.Quality == 100) { glassware.Condition = "New"; }
 			else if (glassware.Quality > 75) { glassware.Condition = "Good"; }
 			else if (glassware.Quality > 25)

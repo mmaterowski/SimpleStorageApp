@@ -6,7 +6,7 @@ namespace MagazynChemikaCNSLAPP.Concrete
 {
 	public class QualityControl : IQualityControl
 	{
-		public bool QualityControlFailed { get; set; }
+		public bool QualityControlFailed { get; set; } = false;
 
 		private readonly IConditionChanger conditionChanger;
 
@@ -38,22 +38,23 @@ namespace MagazynChemikaCNSLAPP.Concrete
 		public void CheckQuality(IGlassware pieceOfGlassware)
 		{
 			Console.WriteLine($"{pieceOfGlassware.ToString()} is {pieceOfGlassware.Condition} !");
-			if (pieceOfGlassware.Quality<=20)
+			if (pieceOfGlassware.Quality <= 20)
 			{
 				QualityControlFailed = true;
 			}
-			else
-			{
-				QualityControlFailed = false;
-			}
+
 		}
 
 		public void CheckQuality(IEnumerable<IGlassware> glasswareCollection)
 		{
+			Console.WriteLine("I'm performing quality control.");
+			Console.WriteLine();
+			QualityControlFailed = false;
 			foreach (var pieceOfGlassware in glasswareCollection)
 			{
 				CheckQuality(pieceOfGlassware);
 			}
+			Console.WriteLine();
 		}
 	}
 }

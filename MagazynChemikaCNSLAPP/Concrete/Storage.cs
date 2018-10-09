@@ -28,6 +28,10 @@ public class Storage
 	}
 	public static decimal PriceOfAllGlassware { get; set; }
 
+	public List<Glassware> GetItems()
+	{
+		return storageItems;
+	}
 	public void ShowStorage()
 	{
 		CheckIfStorageEmpty();
