@@ -21,7 +21,10 @@ namespace MagazynChemikaCNSLAPP
 				{
 					case 1:
 						{
+							Console.WriteLine("This is Your storage:");
+							Console.WriteLine();
 							myStorage.ShowStorage();
+							Console.ReadKey();
 						}
 						break;
 					case 2:
@@ -32,6 +35,12 @@ namespace MagazynChemikaCNSLAPP
 
 							Console.WriteLine("Please,type product ID to buy:");
 							int productID = GetInputFromUser();
+							if (productID > listOfProducts.Length || productID < 0)
+							{
+								Console.WriteLine("There's no item with such ID, try again");
+								Console.ReadLine();
+								break;
+							}
 
 							var productDataString = listOfProducts[productID];
 							var productDataTable = productDataString.Split(',');
@@ -43,7 +52,7 @@ namespace MagazynChemikaCNSLAPP
 							{
 								Name = productData.Name,
 								Volume = productData.Volume,
-								Price = 100M,
+								Price = productData.Volume * 0.8M * ((decimal)rand.Next(95, 99) / 1000),
 								ItemID = rand.Next(0, 1000),
 								Condition = "New",
 								Quality = 100,
@@ -59,6 +68,7 @@ namespace MagazynChemikaCNSLAPP
 						break;
 					case 3:
 						{
+							///validation
 							Console.WriteLine("This is list of Your products");
 							Console.WriteLine();
 							myStorage.ShowStorage();
@@ -189,7 +199,7 @@ namespace MagazynChemikaCNSLAPP
 			else
 			{
 				Console.WriteLine("Please, type a valid input");
-				return 0;
+				return GetInputFromUser();
 			}
 		}
 

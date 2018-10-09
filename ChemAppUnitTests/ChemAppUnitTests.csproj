@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GlasswareWasherTest.cs" />
+    <Compile Include="RandomQualityChangerTests.cs" />
+    <Compile Include="TestGlass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

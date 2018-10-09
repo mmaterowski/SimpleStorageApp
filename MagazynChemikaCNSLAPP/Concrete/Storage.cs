@@ -26,7 +26,6 @@ public class Storage
 		supplyCompany = supplier;
 		storageItems = new List<Glassware>();
 	}
-	public static decimal PriceOfAllGlassware { get; set; }
 
 	public List<Glassware> GetItems()
 	{
@@ -49,24 +48,21 @@ public class Storage
 	{
 		foreach (Glassware piece in storageItems)
 		{
-			Console.WriteLine($"Name: {piece.Name} ID: {piece.ItemID} Velocity: {piece.Volume}ml Price: {piece.Price}$");
+			Console.WriteLine($"Name: {piece.Name} ID: {piece.ItemID} Velocity: {piece.Volume}ml Price: {piece.Price:N2}$");
 		}
 	}
 
 	private void SummarizeEquipment()
 	{
+		var priceOfAllGlassware = storageItems.Sum(m => m.Price);
 		Console.WriteLine("__________________________________________________________");
-		Console.WriteLine($"Total items:{storageItems.Count} \t Total Value:{PriceOfAllGlassware}");
+		Console.WriteLine($"Total items: {storageItems.Count} \t Total Value: {priceOfAllGlassware:N2}");
 	}
 
 	public void AddItem(Glassware piece)
 	{
 		storageItems.Add(piece);
 	}
-
-
-
-
 
 	public void DeleteItem(int itemID)
 	{
@@ -76,49 +72,6 @@ public class Storage
 
 	}
 
-	/*private static void GoThruList(int id)
-	{
-		foreach (Glassware piece in storageItems)
-		{
-			if (piece.ItemID == id)
-			{
-				ConfirmDelete(piece);
-				return;
-			}
-		}
-		Console.WriteLine("I didn't find piece of this ID");
-	}
-
-	private static void ThrowOutThisItem(Glassware piece)
-	{
-		storageItems.Remove(piece);
-		Glassware.ItemCounter--;
-		PriceOfAllGlassware -= piece.Price;
-		Console.WriteLine("Item has been thrown out.");
-
-	}*/
-
-	/*private static void ConfirmDelete(Glassware piece)
-
-	{
-		Console.WriteLine("Do you want to throw out {0}, quality={1}? \n y/n?", piece.ToString(), piece.Condition);
-		string choice = Console.ReadLine();
-		if (choice == "y")
-		{
-			ThrowOutThisItem(piece);
-		}
-
-
-		else if (choice == "n")
-			Console.WriteLine("Item of id: {0} wasn't deleted", piece.ItemID);
-
-		else
-		{
-			Console.WriteLine("Wrong choice");
-			ConfirmDelete(piece);
-		}
-
-	}*/
 }
 
 

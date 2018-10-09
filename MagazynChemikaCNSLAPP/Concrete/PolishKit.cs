@@ -1,5 +1,7 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
 using System.Collections.Generic;
+using System;
+using System.Threading;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
@@ -7,9 +9,9 @@ namespace MagazynChemikaCNSLAPP.Concrete
 	{
 		public void Polish(IGlassware pieceOfGlassware)
 		{
-			System.Console.WriteLine($"Polishing {pieceOfGlassware.ToString()}...");
-			System.Threading.Thread.Sleep(300);
-			System.Console.WriteLine($"{pieceOfGlassware.ToString()} is now clean and shiny!");
+			Console.WriteLine($"Polishing {pieceOfGlassware.ToString()}...");
+			Thread.Sleep(300);
+			Console.WriteLine($"{pieceOfGlassware.ToString()} is now clean and shiny!");
 		}
 
 		public void PolishAllItems(IEnumerable<IGlassware> glasswareCollection)
@@ -18,8 +20,8 @@ namespace MagazynChemikaCNSLAPP.Concrete
 			{
 				Polish(pieceOfGlassware);
 			}
-			System.Console.WriteLine();
-			System.Console.WriteLine("All Your items are clean and shiny now !");
+			Console.WriteLine();
+			Console.WriteLine("All Your items are clean and shiny now !");
 		}
 	}
 }

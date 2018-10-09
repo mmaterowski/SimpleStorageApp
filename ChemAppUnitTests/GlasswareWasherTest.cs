@@ -7,16 +7,7 @@ using System.Collections.Generic;
 namespace ChemAppUnitTests
 {
 
-	class TestGlass : IGlassware
-	{
-		public string Name { get; set; }
-		public decimal Price { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public float Volume { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public int Quality { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public string Condition { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public bool IsClean { get; set; }
-
-	}
+	
 	[TestClass]
 	public class GlasswareWasherTest
 	{
