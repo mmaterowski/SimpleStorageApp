@@ -1,5 +1,6 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
 using System;
+using System.Collections.Generic;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
@@ -12,12 +13,20 @@ namespace MagazynChemikaCNSLAPP.Concrete
 			else if (glassware.Quality > 25)
 			{
 				glassware.Condition = "Damaged";
-				Console.WriteLine("Your beaker is now damaged, but You can still use it");
+				Console.WriteLine($"Your {glassware.ToString()} is now damaged, but You can still use it");
 			}
 			else if (glassware.Quality <= 20)
 			{
-				glassware.Condition = "ToTrash";
-				Console.WriteLine("You broke this piece !");
+				glassware.Condition = "Broken";
+				Console.WriteLine($"You've broken {glassware.ToString()} !");
+			}
+		}
+
+		public void ChangeCondition(IEnumerable<IGlassware> glasswareCollection)
+		{
+			foreach (var pieceOfGlassware in glasswareCollection)
+			{
+				ChangeCondition(pieceOfGlassware);
 			}
 		}
 	}

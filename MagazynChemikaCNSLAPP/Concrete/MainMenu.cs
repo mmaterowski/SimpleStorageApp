@@ -6,16 +6,12 @@ namespace MagazynChemikaCNSLAPP
 {
 	class MainMenu
 	{
-		private int input;
-
-
-
 		public void Run(Storage myStorage, ISupplier supplier)
 		{
 			while (true)
 			{
 				Welcome();
-				GetInputFromUser();
+				int input = GetInputFromUser();
 				switch (input)
 				{
 					case 1:
@@ -30,12 +26,10 @@ namespace MagazynChemikaCNSLAPP
 							supplier.DisplayProductsList(listOfProducts);
 
 							Console.WriteLine("Please,type product ID to buy:");
-							GetInputFromUser();
-							int productID = input;
+							int productID = GetInputFromUser();
+
 							var productDataString = listOfProducts[productID];
-
 							var productDataTable = productDataString.Split(',');
-
 							var productData = new ProductData(productDataTable[0], int.Parse(productDataTable[1]));
 
 							//figure out where and how to assing product IDs
@@ -57,17 +51,21 @@ namespace MagazynChemikaCNSLAPP
 						break;
 					case 3:
 						{
-							Console.WriteLine("This is list of Your products, type ID if You want to throw it out");
+							Console.WriteLine("This is list of Your products");
+							Console.WriteLine();
 							myStorage.ShowStorage();
-							GetInputFromUser();
-							myStorage.DeleteItem(input);
-							Console.WriteLine($"Item with {input} was thrown out!");
+							Console.WriteLine();
+							Console.WriteLine("Type ID of product You want to throw out");
+							int itemID = GetInputFromUser();
+							myStorage.DeleteItem(itemID);
+							Console.WriteLine($"Item with id: {itemID} was thrown out!");
 							Console.ReadLine();
 						}
 						break;
 					case 4:
 						{
-							Console.WriteLine(" \t $$ Pay one milion money to unlock this functionality $$");
+
+							Console.WriteLine("You may perform a reaction here.");
 							Console.ReadKey();
 						}
 						break;
@@ -92,23 +90,25 @@ namespace MagazynChemikaCNSLAPP
 			Console.WriteLine("1.Check storage");
 			Console.WriteLine("2.Add item");
 			Console.WriteLine("3.Delete item");
-			Console.WriteLine("4.Use item");
+			Console.WriteLine("4.Enter laboratory");
 			Console.WriteLine("____________________________________");
 		}
 
 
 
 
-		private void GetInputFromUser()
+		private int GetInputFromUser()
 		{
 			string inputFromUser = Console.ReadLine();
-			if (Int32.TryParse(inputFromUser, out input))
+
+			if (Int32.TryParse(inputFromUser, out int parsedNumber))
 			{
-				input = Int32.Parse(inputFromUser);
+				return parsedNumber;
 			}
 			else
 			{
 				Console.WriteLine("Please, type a valid input");
+				return 0;
 			}
 		}
 

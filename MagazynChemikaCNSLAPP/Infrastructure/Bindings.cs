@@ -12,7 +12,6 @@ namespace MagazynChemikaCNSLAPP.Infrastructure
 			Bind<IWash>().To<WashingMachine>();
 			Bind<IConditionChanger>().To<ChangeConditionBasedOnQuality>();
 			Bind<IQualityControl>().To<RandomQualityChanger>();
-			Bind<IUsable>().To<UseForReaction>();
 			Bind<ILaboratory>().To<ChemicalLaboratory>();
 		}
 	}

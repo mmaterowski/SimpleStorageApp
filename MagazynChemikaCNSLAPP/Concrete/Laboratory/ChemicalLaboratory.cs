@@ -3,36 +3,32 @@ using System.Collections.Generic;
 
 namespace MagazynChemikaCNSLAPP.Concrete.Laboratory
 {
-	public class ChemicalLaboratory : ILaboratory
+	public class ChemicalLaboratory
 	{
-		private IReaction typeOfReaction;
-		private IQualityControl qualityControl;
 
-		public ChemicalLaboratory(IReaction reactionParam, IQualityControl qualityControlParam)
+		private readonly IQualityControl qualityControl;
+		private readonly IMaintainItem maintainer;
+
+		public ChemicalLaboratory(IQualityControl qualityControlParam, IMaintainItem maintainParam)
 		{
-			typeOfReaction = reactionParam;
 			qualityControl = qualityControlParam;
+			maintainer = maintainParam;
 		}
 
-
-		public void ChangeCondition(IGlassware glassware)
+		public void PerformReaction(IEnumerable<IGlassware> glasswareCollection)
 		{
-			throw new System.NotImplementedException();
-		}
+			qualityControl.CheckQuality(glasswareCollection);
+			if (!qualityControl.QualityControlFailed)
+			{
+				qualityControl.ChangeQuality(glasswareCollection);
 
-		public void ChangeQuality(IGlassware glassware)
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void PerformReaction(IEnumerable<IGlassware> glassware)
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void ThrowOutBrokenItems(IEnumerable<IGlassware> listOfItems)
-		{
-			throw new System.NotImplementedException();
+				System.Console.WriteLine();
+			}
+			else
+			{
+				System.Console.WriteLine("You can't perform reaction, some of Your items are broken or dirty!");
+				System.Console.WriteLine("Please, buy new ones and clean dirty ones, before attempting to perform a reaction");
+			}
 		}
 	}
 }

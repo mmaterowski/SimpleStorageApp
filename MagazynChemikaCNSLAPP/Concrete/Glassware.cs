@@ -11,5 +11,10 @@ namespace MagazynChemikaCNSLAPP.Concrete
 		public int Quality { get; set; }
 		public string Condition { get; set; }
 		public bool IsClean { get; set; }
+
+		override public string ToString()
+		{
+			return $"{this.Name}({this.Volume}ml)";
+		}
 	}
 }

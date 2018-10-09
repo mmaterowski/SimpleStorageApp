@@ -1,21 +1,30 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
 using System;
+using System.Collections.Generic;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
-	public class WashingMachine : IWash
+	public class GlasswareWasher : IWash
 	{
-		public void Wash(IGlassware glassObject)
+		public void Wash(IGlassware glassware)
 		{
-			if (!glassObject.IsClean)
+			if (!glassware.IsClean)
 			{
-				Console.WriteLine($"I'm starting to wash Your {glassObject.Name}");
+				Console.WriteLine($"I'm starting to wash Your {glassware.ToString()}");
 				SimulateWashingProcess();
-				glassObject.IsClean = true;
+				glassware.IsClean = true;
 			}
 			else
 			{
-				Console.WriteLine($"{glassObject.Name} is already clean!");
+				Console.WriteLine($"{glassware.ToString()} is already clean!");
+			}
+		}
+
+		public void Wash(IEnumerable<IGlassware> glasswareCollection)
+		{
+			foreach (var pieceOfGlassware in glasswareCollection)
+			{
+				Wash(pieceOfGlassware);
 			}
 		}
 

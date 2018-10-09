@@ -7,7 +7,7 @@ using System.Linq;
 public class Storage
 {
 	private List<Glassware> storageItems;
-	private ISupplier supplyCompany;
+	private readonly ISupplier supplyCompany;
 	private int _productID;
 
 	public int ProductID
@@ -33,7 +33,6 @@ public class Storage
 		CheckIfStorageEmpty();
 		PrintStorage();
 		SummarizeEquipment();
-		Console.ReadKey();
 	}
 
 	private void CheckIfStorageEmpty()

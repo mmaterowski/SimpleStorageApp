@@ -1,7 +1,10 @@
-﻿namespace MagazynChemikaCNSLAPP.Abstract
+﻿using System.Collections.Generic;
+
+namespace MagazynChemikaCNSLAPP.Abstract
 {
 	public interface IWash
 	{
-		void Wash(IGlassware glassObject);
+		void Wash(IGlassware pieceOfGlassware);
+		void Wash(IEnumerable<IGlassware> glasswareCollection);
 	}
 }

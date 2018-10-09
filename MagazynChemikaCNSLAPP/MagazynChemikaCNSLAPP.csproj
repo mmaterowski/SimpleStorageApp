@@ -47,21 +47,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IConditionChanger.cs" />
-    <Compile Include="Abstract\IDispose.cs" />
+    <Compile Include="Abstract\IThrowOut.cs" />
     <Compile Include="Abstract\IGlassware.cs" />
     <Compile Include="Abstract\ILaboratory.cs" />
+    <Compile Include="Abstract\IMaintainItem.cs" />
     <Compile Include="Abstract\IReaction.cs" />
     <Compile Include="Abstract\ISupplier.cs" />
     <Compile Include="Abstract\IWash.cs" />
     <Compile Include="Concrete\ChangeConditionBasedOnQuality.cs" />
     <Compile Include="Abstract\IQualityControl.cs" />
-    <Compile Include="Concrete\LabGlass.cs" />
     <Compile Include="Concrete\MainMenu.cs" />
     <Compile Include="Concrete\Glassware.cs" />
     <Compile Include="Concrete\ProductData.cs" />
+    <Compile Include="Concrete\QualityControl.cs" />
     <Compile Include="Concrete\Storage.cs" />
     <Compile Include="Concrete\RandomQualityChanger.cs" />
-    <Compile Include="Concrete\RegularItemUse.cs" />
     <Compile Include="Concrete\Laboratory\ChemicalLaboratory.cs" />
     <Compile Include="Concrete\SupplyingCompany.cs" />
     <Compile Include="Concrete\WashingMachine.cs" />

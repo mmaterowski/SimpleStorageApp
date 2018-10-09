@@ -22,7 +22,7 @@ namespace ChemAppUnitTests
 		[TestMethod]
 		public void Can_Wash_Glassware()
 		{
-			//Arrange
+		/*	//Arrange
 			IWash washingMachine = new WashingMachine();
 			IConditionChanger conditionChanger = new ChangeConditionBasedOnQuality();
 
@@ -62,7 +62,7 @@ namespace ChemAppUnitTests
 
 						//Assert
 						Assert.AreNotEqual(100, glass.Quality);*/
-				//	}
+				}
 
 				/*	[TestMethod]
 					public void Condition_Of_Glassware_Can_Change()
