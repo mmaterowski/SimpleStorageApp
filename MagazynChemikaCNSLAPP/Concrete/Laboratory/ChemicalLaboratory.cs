@@ -8,11 +8,15 @@ namespace MagazynChemikaCNSLAPP.Concrete.Laboratory
 
 		private readonly IQualityControl qualityControl;
 		private readonly IMaintainItem maintainer;
+		private readonly IChangeQuality qualityChanger;
+		private readonly IConditionChanger conditionChanger;
 
-		public ChemicalLaboratory(IQualityControl qualityControlParam, IMaintainItem maintainParam)
+		public ChemicalLaboratory(IQualityControl qualityControlParam, IMaintainItem maintainParam, IChangeQuality qualityChangerParam, IConditionChanger conditionChangerParam)
 		{
 			qualityControl = qualityControlParam;
 			maintainer = maintainParam;
+			qualityChanger = qualityChangerParam;
+			conditionChanger = conditionChangerParam;
 		}
 
 		public void PerformReaction(IEnumerable<IGlassware> glasswareCollection)
@@ -21,7 +25,8 @@ namespace MagazynChemikaCNSLAPP.Concrete.Laboratory
 			bool allItemsAreClean = maintainer.CheckIfAllItemsAreClean(glasswareCollection);
 			if (!qualityControl.QualityControlFailed && allItemsAreClean)
 			{
-				qualityControl.ChangeQuality(glasswareCollection);
+				qualityChanger.ChangeQuality(glasswareCollection);
+				conditionChanger.ChangeCondition(glasswareCollection);
 
 				System.Console.WriteLine("Reaction performed. You gain xxx money.");
 			}

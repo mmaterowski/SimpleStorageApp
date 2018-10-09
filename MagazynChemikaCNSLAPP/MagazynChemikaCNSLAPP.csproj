@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IChangeQuality.cs" />
     <Compile Include="Abstract\IConditionChanger.cs" />
     <Compile Include="Abstract\IPolish.cs" />
     <Compile Include="Abstract\IThrowOut.cs" />
@@ -55,7 +56,7 @@
     <Compile Include="Abstract\IReaction.cs" />
     <Compile Include="Abstract\ISupplier.cs" />
     <Compile Include="Abstract\IWash.cs" />
-    <Compile Include="Concrete\ChangeConditionBasedOnQuality.cs" />
+    <Compile Include="Concrete\QualityBasedConditionChanger.cs" />
     <Compile Include="Abstract\IQualityControl.cs" />
     <Compile Include="Concrete\ChemicalDisposer.cs" />
     <Compile Include="Concrete\ItemMaintainer.cs" />

@@ -29,30 +29,31 @@ namespace MagazynChemikaCNSLAPP
 						break;
 					case 2:
 						{
-							var listOfProducts = supplier.GetAvailableProducts();
-							Console.WriteLine("This is list of available items:");
-							supplier.DisplayProductsList(listOfProducts);
+							Console.WriteLine("This is list of products from Your supplier:");
+							Console.WriteLine();
+							myStorage.ShowItemsThatCanBePurshed();
 
 							Console.WriteLine("Please,type product ID to buy:");
 							int productID = GetInputFromUser();
-							if (productID > listOfProducts.Length || productID < 0)
+							var supplierProductList = myStorage.GetItemsThatCanBePurshed();
+
+							if (productID < 0 || productID > supplierProductList.Count())
 							{
 								Console.WriteLine("There's no item with such ID, try again");
 								Console.ReadLine();
 								break;
 							}
 
-							var productDataString = listOfProducts[productID];
-							var productDataTable = productDataString.Split(',');
-							var productData = new ProductData(productDataTable[0], int.Parse(productDataTable[1]));
+
 
 							//figure out where and how to assing product IDs
+							// change pricing so it makes sense
 							var rand = new Random();
 							var piece = new Glassware
 							{
-								Name = productData.Name,
-								Volume = productData.Volume,
-								Price = productData.Volume * 0.8M * ((decimal)rand.Next(95, 99) / 1000),
+								Name = supplierProductList[productID].Name,
+								Volume = supplierProductList[productID].Volume,
+								Price = supplierProductList[productID].Price * ((decimal)rand.Next(95, 99) / 1000),
 								ItemID = rand.Next(0, 1000),
 								Condition = "New",
 								Quality = 100,
@@ -85,8 +86,10 @@ namespace MagazynChemikaCNSLAPP
 							var kernel = new StandardKernel(new Bindings());
 							var itemMaintainer = kernel.Get<IMaintainItem>();
 							var qualityControl = kernel.Get<IQualityControl>();
+							var qualityChanger = kernel.Get<IChangeQuality>();
+							var conditionChanger = kernel.Get<IConditionChanger>();
 
-							ChemicalLaboratory chemicalLaboratory = new ChemicalLaboratory(qualityControl, itemMaintainer);
+							ChemicalLaboratory chemicalLaboratory = new ChemicalLaboratory(qualityControl, itemMaintainer, qualityChanger, conditionChanger);
 							Console.WriteLine("This is Your chemical laboratory, here You can:");
 							LabMenu(chemicalLaboratory, myStorage);
 						}

@@ -25,11 +25,12 @@ namespace MagazynChemikaCNSLAPP.Concrete
 			var capacity = (availableVolumes.Length) * (availableEquipment.Length);
 			string[] listOfProducts = new string[capacity];
 			int iterator = 0;
+			Random rand = new Random();
 			for (int i = 0; i < availableEquipment.Length; i++)
 			{
 				for (int j = 0; j < availableVolumes.Length; j++)
 				{
-					listOfProducts[iterator] = availableEquipment[i] + "," + availableVolumes[j];
+					listOfProducts[iterator] = availableEquipment[i] + "," + availableVolumes[j] + "," + rand.Next(10, 50).ToString();
 					iterator++;
 
 				}

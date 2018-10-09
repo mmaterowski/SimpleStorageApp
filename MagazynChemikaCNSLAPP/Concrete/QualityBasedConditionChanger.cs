@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
-	public class ChangeConditionBasedOnQuality : IConditionChanger
+	public class QualityBasedConditionChanger : IConditionChanger
 	{
 		public void ChangeCondition(IGlassware glassware)
 		{

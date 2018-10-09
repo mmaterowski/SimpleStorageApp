@@ -11,8 +11,8 @@ namespace MagazynChemikaCNSLAPP.Infrastructure
 			Bind<IWash>().To<GlasswareWasher>();
 			Bind<IPolish>().To<PolishKit>();
 			Bind<IThrowOut>().To<ChemicalDisposer>();
-			Bind<IConditionChanger>().To<ChangeConditionBasedOnQuality>();
-			Bind<IQualityControl>().To<QualityControl>();
+			Bind<IConditionChanger>().To<QualityBasedConditionChanger>();
+			Bind<IChangeQuality>().To<RandomQualityChanger>();
 			Bind<IMaintainItem>().To<ItemMaintainer>();
 
 

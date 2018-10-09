@@ -6,6 +6,7 @@ using System.Linq;
 
 public class Storage
 {
+	private List<ProductData> productData;
 	private List<Glassware> storageItems;
 	private readonly ISupplier supplyCompany;
 	private int _productID;
@@ -25,11 +26,44 @@ public class Storage
 	{
 		supplyCompany = supplier;
 		storageItems = new List<Glassware>();
+		productData = new List<ProductData>();
+		ParseDataFromSupplier();
+
+
+	}
+
+	private void ParseDataFromSupplier()
+	{
+		var products = supplyCompany.GetAvailableProducts();
+		int iterator = 0;
+		foreach (var product in products)
+		{
+			var productDataString = products[iterator];
+			var productDataTable = productDataString.Split(',');
+			var itemData = new ProductData(iterator, productDataTable[0], int.Parse(productDataTable[1]), decimal.Parse(productDataTable[2]));
+			productData.Add(itemData);
+			iterator++;
+
+
+		}
 	}
 
 	public List<Glassware> GetItems()
 	{
 		return storageItems;
+	}
+
+	public List<ProductData> GetItemsThatCanBePurshed()
+	{
+		return productData;
+	}
+
+	public void ShowItemsThatCanBePurshed()
+	{
+		foreach (var product in productData)
+		{
+			Console.WriteLine($"ID:{product.SupplierID}, Name: {product.Name}, Volume: {product.Volume}, Price: {product.Price:N2}$");
+		}
 	}
 	public void ShowStorage()
 	{

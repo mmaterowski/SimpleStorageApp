@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace MagazynChemikaCNSLAPP.Concrete
 {
-	public class RandomQualityChanger 
+	public class RandomQualityChanger : IChangeQuality
 	{
-		
+
 		public void ChangeQuality(IGlassware glasswareObject)
 		{
 			Random rand = new Random();
@@ -14,6 +14,14 @@ namespace MagazynChemikaCNSLAPP.Concrete
 			if (glasswareObject.Quality > randomValue)
 			{
 				glasswareObject.Quality = randomValue;
+			}
+		}
+
+		public void ChangeQuality(IEnumerable<IGlassware> glassware)
+		{
+			foreach (var pieceOfGlassware in glassware)
+			{
+				ChangeQuality(pieceOfGlassware);
 			}
 		}
 	}

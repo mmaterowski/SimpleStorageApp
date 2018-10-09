@@ -13,7 +13,7 @@ namespace ChemAppUnitTests
 		public decimal Price { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public float Volume { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public int Quality { get; set; }
-		public string Condition { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public string Condition { get; set; }
 		public bool IsClean { get; set; }
 
 	}

@@ -4,11 +4,15 @@
 	{
 		public int Volume { get; set; }
 		public string Name { get; set; }
+		public decimal Price { get; set; }
+		public int SupplierID { get; set; }
 
-		public ProductData(string name, int volume)
+		public ProductData(int supplierID, string name, int volume, decimal price)
 		{
 			Name = name;
 			Volume = volume;
+			Price = price;
+			SupplierID = supplierID;
 		}
 	}
 }
