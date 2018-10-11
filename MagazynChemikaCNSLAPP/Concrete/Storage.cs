@@ -7,7 +7,7 @@ using System.Linq;
 public class Storage
 {
 	private List<ProductData> productData;
-	private List<Glassware> storageItems;
+	private List<IGlassware> storageItems;
 	private readonly ISupplier supplyCompany;
 	private int _productID;
 
@@ -25,7 +25,7 @@ public class Storage
 	public Storage(ISupplier supplier)
 	{
 		supplyCompany = supplier;
-		storageItems = new List<Glassware>();
+		storageItems = new List<IGlassware>();
 		productData = new List<ProductData>();
 		ParseDataFromSupplier();
 
@@ -48,10 +48,11 @@ public class Storage
 		}
 	}
 
-	public List<Glassware> GetItems()
+	public List<IGlassware> GetItems()
 	{
 		return storageItems;
 	}
+
 
 	public List<ProductData> GetItemsThatCanBePurshed()
 	{
@@ -69,7 +70,7 @@ public class Storage
 	{
 		CheckIfStorageEmpty();
 		PrintStorage();
-		SummarizeEquipment();
+		ShowTotalPriceOfItems();
 	}
 
 	private void CheckIfStorageEmpty()
@@ -86,23 +87,36 @@ public class Storage
 		}
 	}
 
-	private void SummarizeEquipment()
+	public decimal GetTotalPriceOfItems()
 	{
 		var priceOfAllGlassware = storageItems.Sum(m => m.Price);
-		Console.WriteLine("__________________________________________________________");
-		Console.WriteLine($"Total items: {storageItems.Count} \t Total Value: {priceOfAllGlassware:N2}");
+		return priceOfAllGlassware;
+
 	}
 
-	public void AddItem(Glassware piece)
+	public void ShowTotalPriceOfItems()
+	{
+		var totalValue = GetTotalPriceOfItems();
+		Console.WriteLine("__________________________________________________________");
+		Console.WriteLine($"Total items: {storageItems.Count} \t Total Value: {totalValue:N2}");
+	}
+
+	public void AddItem(IGlassware piece)
 	{
 		storageItems.Add(piece);
 	}
 
 	public void DeleteItem(int itemID)
 	{
-		var productToDelete = storageItems.FirstOrDefault(p => p.ItemID == itemID);
-		storageItems.Remove(productToDelete);
-
+		var productToDelete = storageItems.First(i => i.ItemID == itemID);
+		if (productToDelete != null)
+		{
+			storageItems.Remove(productToDelete);
+		}
+		else
+		{
+			Console.WriteLine("Sorry,there's no product with this ID in Your storage");
+		}
 
 	}
 

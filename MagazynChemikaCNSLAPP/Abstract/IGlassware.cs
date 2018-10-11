@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MagazynChemikaCNSLAPP.Abstract
+﻿namespace MagazynChemikaCNSLAPP.Abstract
 {
 	public interface IGlassware
 	{
@@ -14,5 +8,6 @@ namespace MagazynChemikaCNSLAPP.Abstract
 		int Quality { get; set; }
 		string Condition { get; set; }
 		bool IsClean { get; set; }
+		int ItemID { get; set; }
 	}
 }
