@@ -1,5 +1,6 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace ChemAppUnitTests
 {
@@ -49,7 +50,6 @@ namespace ChemAppUnitTests
 			Assert.AreEqual(1, listOfProducts.Count);
 		}
 
-
 		[TestMethod]
 		public void Can_Delete_Product()
 		{
@@ -83,6 +83,28 @@ namespace ChemAppUnitTests
 
 			//Assert
 			Assert.AreEqual(40M, totalSum);
+
+		}
+
+		[TestMethod]
+		public void Can_GetListOfStorageItems()
+		{
+			//Arrange
+			var testGlass1 = new TestGlass();
+			var testGlass2 = new TestGlass();
+			var testList = new List<IGlassware>()
+			{
+				testGlass1,testGlass2
+			};
+			storage.AddItem(testGlass1);
+			storage.AddItem(testGlass2);
+
+			//Act
+			var storageGlassware = storage.GetItems();
+
+			//Assert
+			Assert.AreEqual(testList[0], storageGlassware[0]);
+			Assert.AreEqual(testList[1], storageGlassware[1]);
 
 		}
 	}

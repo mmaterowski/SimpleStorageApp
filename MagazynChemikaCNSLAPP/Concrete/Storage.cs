@@ -53,7 +53,6 @@ public class Storage
 		return storageItems;
 	}
 
-
 	public List<ProductData> GetItemsThatCanBePurshed()
 	{
 		return productData;
@@ -66,6 +65,7 @@ public class Storage
 			Console.WriteLine($"ID:{product.SupplierID}, Name: {product.Name}, Volume: {product.Volume}, Price: {product.Price:N2}$");
 		}
 	}
+
 	public void ShowStorage()
 	{
 		CheckIfStorageEmpty();
