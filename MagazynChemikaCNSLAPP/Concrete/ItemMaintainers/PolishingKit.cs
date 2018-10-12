@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System;
 using System.Threading;
+using MagazynChemikaCNSLAPP.Abstract.ItemMaintainers;
 
-namespace MagazynChemikaCNSLAPP.Concrete
+namespace MagazynChemikaCNSLAPP.Concrete.ItemMaintainers
 {
-	public class PolishKit : IPolish
+	public class PolishingKit : IPolish
 	{
 		public void Polish(IGlassware pieceOfGlassware)
 		{

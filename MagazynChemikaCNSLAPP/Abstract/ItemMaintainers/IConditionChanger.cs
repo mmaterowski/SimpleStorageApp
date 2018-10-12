@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MagazynChemikaCNSLAPP.Abstract
+namespace MagazynChemikaCNSLAPP.Abstract.ItemMaintainers
 {
 	public interface IConditionChanger
 	{

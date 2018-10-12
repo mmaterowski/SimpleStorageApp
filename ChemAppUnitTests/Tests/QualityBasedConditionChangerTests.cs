@@ -1,7 +1,8 @@
 ﻿using MagazynChemikaCNSLAPP.Concrete;
+using MagazynChemikaCNSLAPP.Concrete.ItemMaintainers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ChemAppUnitTests
+namespace ChemAppUnitTests.Tests
 {
 	[TestClass]
 	public class QualityBasedConditionChangerTests

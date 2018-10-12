@@ -1,5 +1,5 @@
-﻿using MagazynChemikaCNSLAPP.Abstract;
-using MagazynChemikaCNSLAPP.Concrete;
+﻿using MagazynChemikaCNSLAPP.Abstract.ItemMaintainers;
+using MagazynChemikaCNSLAPP.Concrete.ItemMaintainers;
 using Ninject.Modules;
 
 namespace MagazynChemikaCNSLAPP.Infrastructure
@@ -9,13 +9,10 @@ namespace MagazynChemikaCNSLAPP.Infrastructure
 		public override void Load()
 		{
 			Bind<IWash>().To<GlasswareWasher>();
-			Bind<IPolish>().To<PolishKit>();
-			Bind<IThrowOut>().To<ChemicalDisposer>();
+			Bind<IPolish>().To<PolishingKit>();
 			Bind<IConditionChanger>().To<QualityBasedConditionChanger>();
 			Bind<IChangeQuality>().To<RandomQualityChanger>();
 			Bind<IMaintainItem>().To<ItemMaintainer>();
-
-
 		}
 	}
 }

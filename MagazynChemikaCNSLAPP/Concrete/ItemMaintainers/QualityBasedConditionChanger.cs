@@ -1,8 +1,9 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
+using MagazynChemikaCNSLAPP.Abstract.ItemMaintainers;
 using System;
 using System.Collections.Generic;
 
-namespace MagazynChemikaCNSLAPP.Concrete
+namespace MagazynChemikaCNSLAPP.Concrete.ItemMaintainers
 {
 	public class QualityBasedConditionChanger : IConditionChanger
 	{

@@ -1,4 +1,5 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
+using MagazynChemikaCNSLAPP.Abstract.ItemMaintainers;
 using MagazynChemikaCNSLAPP.Concrete;
 using MagazynChemikaCNSLAPP.Concrete.Laboratory;
 using MagazynChemikaCNSLAPP.Infrastructure;
