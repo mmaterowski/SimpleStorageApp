@@ -6,6 +6,7 @@ namespace MagazynChemikaCNSLAPP.Concrete
 {
 	public class QualityBasedConditionChanger : IConditionChanger
 	{
+
 		public void ChangeCondition(IGlassware glassware)
 		{
 			Console.WriteLine();
