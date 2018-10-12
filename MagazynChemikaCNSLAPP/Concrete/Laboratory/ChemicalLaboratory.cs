@@ -1,9 +1,10 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
+using MagazynChemikaCNSLAPP.Abstract.ItemMaintainers;
 using System.Collections.Generic;
 
 namespace MagazynChemikaCNSLAPP.Concrete.Laboratory
 {
-	public class ChemicalLaboratory
+	public class ChemicalLaboratory : ILaboratory
 	{
 
 		private readonly IQualityControl qualityControl;

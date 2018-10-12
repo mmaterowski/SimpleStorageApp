@@ -14,7 +14,7 @@ namespace MagazynChemikaCNSLAPP.Concrete
 
 		override public string ToString()
 		{
-			return $"{this.Name}({this.Volume}ml)";
+			return $"{this.Name} ({this.Volume}ml)";
 		}
 	}
 }

@@ -49,13 +49,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GlasswareWasherTests.cs" />
+    <Compile Include="Tests\GlasswareTests.cs" />
+    <Compile Include="Tests\GlasswareWasherTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GlasswareWasherTest.cs" />
-    <Compile Include="QualityBasedConditionChangerTests.cs" />
-    <Compile Include="QualityControlTests.cs" />
-    <Compile Include="RandomQualityChangerTests.cs" />
-    <Compile Include="StorageTests.cs" />
+    <Compile Include="Tests\GlasswareWasherTest.cs" />
+    <Compile Include="Tests\QualityBasedConditionChangerTests.cs" />
+    <Compile Include="Tests\QualityControlTests.cs" />
+    <Compile Include="Tests\RandomQualityChangerTests.cs" />
+    <Compile Include="Tests\StorageTests.cs" />
     <Compile Include="TestGlass.cs" />
   </ItemGroup>
   <ItemGroup>

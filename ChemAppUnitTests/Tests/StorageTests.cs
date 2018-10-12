@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace ChemAppUnitTests
+namespace ChemAppUnitTests.Tests
 {
 	public class FakeSupplier : ISupplier
 	{

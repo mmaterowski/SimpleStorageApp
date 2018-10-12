@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MagazynChemikaCNSLAPP.Concrete
+namespace MagazynChemikaCNSLAPP.Concrete.ItemMaintainers
 {
 	public class QualityControl 
 	{

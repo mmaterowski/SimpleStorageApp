@@ -46,30 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IChangeQuality.cs" />
-    <Compile Include="Abstract\IConditionChanger.cs" />
-    <Compile Include="Abstract\IPolish.cs" />
-    <Compile Include="Abstract\IThrowOut.cs" />
+    <Compile Include="Abstract\ItemMaintainers\IChangeQuality.cs" />
+    <Compile Include="Abstract\ItemMaintainers\IConditionChanger.cs" />
+    <Compile Include="Abstract\ItemMaintainers\IPolish.cs" />
     <Compile Include="Abstract\IGlassware.cs" />
     <Compile Include="Abstract\ILaboratory.cs" />
-    <Compile Include="Abstract\IMaintainItem.cs" />
+    <Compile Include="Abstract\ItemMaintainers\IMaintainItem.cs" />
     <Compile Include="Abstract\IReaction.cs" />
     <Compile Include="Abstract\ISupplier.cs" />
-    <Compile Include="Abstract\IWash.cs" />
-    <Compile Include="Concrete\QualityBasedConditionChanger.cs" />
-    <Compile Include="Abstract\IQualityControl.cs" />
-    <Compile Include="Concrete\ChemicalDisposer.cs" />
-    <Compile Include="Concrete\ItemMaintainer.cs" />
+    <Compile Include="Abstract\ItemMaintainers\IWash.cs" />
+    <Compile Include="Concrete\ItemMaintainers\QualityBasedConditionChanger.cs" />
+    <Compile Include="Abstract\ItemMaintainers\IQualityControl.cs" />
+    <Compile Include="Concrete\ItemMaintainers\ItemMaintainer.cs" />
     <Compile Include="Concrete\MainMenu.cs" />
     <Compile Include="Concrete\Glassware.cs" />
-    <Compile Include="Concrete\PolishKit.cs" />
+    <Compile Include="Concrete\ItemMaintainers\PolishingKit.cs" />
     <Compile Include="Concrete\ProductData.cs" />
-    <Compile Include="Concrete\QualityControl.cs" />
+    <Compile Include="Concrete\ItemMaintainers\QualityControl.cs" />
     <Compile Include="Concrete\Storage.cs" />
-    <Compile Include="Concrete\RandomQualityChanger.cs" />
+    <Compile Include="Concrete\ItemMaintainers\RandomQualityChanger.cs" />
     <Compile Include="Concrete\Laboratory\ChemicalLaboratory.cs" />
     <Compile Include="Concrete\SupplyingCompany.cs" />
-    <Compile Include="Concrete\GlasswareWasher.cs" />
+    <Compile Include="Concrete\ItemMaintainers\GlasswareWasher.cs" />
     <Compile Include="Infrastructure\Bindings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,9 +76,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Concrete\Glassware\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,9 +1,10 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
 using MagazynChemikaCNSLAPP.Concrete;
+using MagazynChemikaCNSLAPP.Concrete.ItemMaintainers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace ChemAppUnitTests
+namespace ChemAppUnitTests.Tests
 {
 	[TestClass]
 	public class GlasswareWasherTests

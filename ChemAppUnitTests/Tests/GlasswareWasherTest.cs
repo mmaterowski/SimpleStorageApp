@@ -1,10 +1,11 @@
 ﻿using MagazynChemikaCNSLAPP.Abstract;
 using MagazynChemikaCNSLAPP.Concrete;
+using MagazynChemikaCNSLAPP.Concrete.ItemMaintainers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace ChemAppUnitTests
+namespace ChemAppUnitTests.Tests
 {
 
 	

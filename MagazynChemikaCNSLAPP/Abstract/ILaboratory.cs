@@ -1,6 +1,8 @@
-﻿namespace MagazynChemikaCNSLAPP.Abstract
+﻿using MagazynChemikaCNSLAPP.Abstract.ItemMaintainers;
+
+namespace MagazynChemikaCNSLAPP.Abstract
 {
-	public interface ILaboratory : IReaction,IQualityControl
+	public interface ILaboratory : IReaction
 	{
 	}
 }
