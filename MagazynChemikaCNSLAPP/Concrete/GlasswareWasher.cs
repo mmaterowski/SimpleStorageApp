@@ -55,6 +55,7 @@ namespace MagazynChemikaCNSLAPP.Concrete
 			string washingString = "";
 			for (int i = 0; i < 3; i++)
 			{
+				Console.WriteLine(washingString);
 				washingString += ".";
 				System.Threading.Thread.Sleep(100);
 				if (washingString == "...")
