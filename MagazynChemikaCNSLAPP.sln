@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagazynChemikaCNSLAPP", "MagazynChemikaCNSLAPP\MagazynChemikaCNSLAPP.csproj", "{4FB8313A-7308-4F7C-B5A7-283E2502100C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemApp.Infrastructure", "ChemApp.Infrastructure\ChemApp.Infrastructure.csproj", "{A50FC017-590A-4E1F-BB2F-7F5B5ED28BC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemAppUnitTests", "ChemAppUnitTests\ChemAppUnitTests.csproj", "{2A7B6277-6C7B-4E3C-8EE9-EB7F33064499}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemApp.Domain", "ChemApp.Domain\ChemApp.Domain.csproj", "{7332A317-1FAA-478D-A229-B41231F6684E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemApp.Console", "ChemApp.Console\ChemApp.Console.csproj", "{9E36E610-4F2A-4A1A-BF0A-35289D158D2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4FB8313A-7308-4F7C-B5A7-283E2502100C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4FB8313A-7308-4F7C-B5A7-283E2502100C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4FB8313A-7308-4F7C-B5A7-283E2502100C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4FB8313A-7308-4F7C-B5A7-283E2502100C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A7B6277-6C7B-4E3C-8EE9-EB7F33064499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A7B6277-6C7B-4E3C-8EE9-EB7F33064499}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A7B6277-6C7B-4E3C-8EE9-EB7F33064499}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A7B6277-6C7B-4E3C-8EE9-EB7F33064499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A50FC017-590A-4E1F-BB2F-7F5B5ED28BC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A50FC017-590A-4E1F-BB2F-7F5B5ED28BC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A50FC017-590A-4E1F-BB2F-7F5B5ED28BC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A50FC017-590A-4E1F-BB2F-7F5B5ED28BC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7332A317-1FAA-478D-A229-B41231F6684E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7332A317-1FAA-478D-A229-B41231F6684E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7332A317-1FAA-478D-A229-B41231F6684E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7332A317-1FAA-478D-A229-B41231F6684E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E36E610-4F2A-4A1A-BF0A-35289D158D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E36E610-4F2A-4A1A-BF0A-35289D158D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E36E610-4F2A-4A1A-BF0A-35289D158D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E36E610-4F2A-4A1A-BF0A-35289D158D2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

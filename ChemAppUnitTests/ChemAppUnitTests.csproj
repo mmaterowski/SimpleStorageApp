@@ -63,9 +63,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MagazynChemikaCNSLAPP\MagazynChemikaCNSLAPP.csproj">
+    <ProjectReference Include="..\MagazynChemikaCNSLAPP\ChemAppConsole.csproj">
       <Project>{4fb8313a-7308-4f7c-b5a7-283e2502100c}</Project>
-      <Name>MagazynChemikaCNSLAPP</Name>
+      <Name>ChemAppConsole</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
