@@ -6,10 +6,10 @@ namespace ChemApp.Domain.Abstract
     {
         void WashItem(IGlassware pieceOfGlassware);
 
-        void WashDirtyItems(IEnumerable<IGlassware> glasswareCollection);
+        void WashItems(IEnumerable<IGlassware> glasswareCollection);
 
         void PolishItem(IGlassware pieceOfGlassware);
 
-        void PolishAllItems(IEnumerable<IGlassware> glasswareCollection);
+        void PolishItems(IEnumerable<IGlassware> glasswareCollection);
     }
 }

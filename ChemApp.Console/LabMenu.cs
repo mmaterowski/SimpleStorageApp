@@ -12,6 +12,7 @@
     {
         private readonly ILaboratory chemLaboratory;
         private readonly IStorage myStorage;
+        private bool ExitLaboratory;
 
         public LabMenu(ILaboratory chemLaboratory, IStorage myStorage)
         {
@@ -23,6 +24,7 @@
         {
             while (true)
             {
+                ExitLaboratory = false;
                 PrintLaboratory();
                 int input = InputUtility.GetInputFromUser();
 
@@ -39,7 +41,7 @@
                     case 2:
                         Console.WriteLine("Type id of item to wash it");
                         int itemID = InputUtility.GetInputFromUser();
-                        var foundItem = myStorage.GetProductById(itemID);
+                        var foundItem = myStorage.GetItemById(itemID);
                         if (foundItem != null)
                         {
                             chemLaboratory.WashItem(foundItem);
@@ -55,35 +57,42 @@
 
                     case 3:
                         Console.WriteLine("I'm starting to wash all dirty items in Your storage");
-                        chemLaboratory.WashDirtyItems(myStorage.GetItems());
+                        chemLaboratory.WashItems(myStorage.GetItems().Where(i => i.IsClean = false));
                         break;
 
                     case 4:
                         Console.WriteLine("Type id of item to polish:");
                         itemID = InputUtility.GetInputFromUser();
-                        foundItem = myStorage.GetItems().FirstOrDefault(i => i.ItemID == itemID);
+                        foundItem = myStorage.GetItemById(itemID);
                         if (foundItem != null)
                         {
                             chemLaboratory.PolishItem(foundItem);
                         }
                         else
                         {
-                            Console.WriteLine($"I didn't find item with ID {itemID}");
+                            var ex = new ItemNotFoundException(itemID.ToString());
+                            DefaultLogger.Instance.Error("Item not found");
+                            DefaultLogger.Instance.Error(ex.ToString());
                         }
                         break;
 
                     case 5:
                         Console.WriteLine("I'm polishing all items in Your lab");
-                        chemLaboratory.PolishAllItems(myStorage.GetItems());
+                        chemLaboratory.PolishItems(myStorage.GetItems());
                         break;
 
                     case 6:
                         //code
+                        ExitLaboratory = true;
                         break;
 
                     default:
                         Console.WriteLine("Wrong choice");
                         break;
+                }
+                if (ExitLaboratory)
+                {
+                    break;
                 }
                 Console.Clear();
             }

@@ -118,7 +118,7 @@
             }
         }
 
-        public IGlassware GetProductById(int id)
+        public IGlassware GetItemById(int id)
         {
             return this.storageItems.FirstOrDefault(g => g.ItemID == id);
         }
