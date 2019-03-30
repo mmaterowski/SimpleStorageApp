@@ -1,11 +1,13 @@
-﻿using ChemApp.Console.Utilities;
-using ChemApp.Domain;
-using ChemApp.Domain.Abstract;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace ChemApp.Console
+﻿namespace ChemApp.Console
 {
+    using ChemApp.Console.Infrastructure;
+    using ChemApp.Console.Utilities;
+    using ChemApp.Domain;
+    using ChemApp.Domain.Abstract;
+    using ChemApp.Infrastructure.Exceptions;
+    using System;
+    using System.Linq;
+
     internal class LabMenu
     {
         private readonly ILaboratory chemLaboratory;
@@ -27,34 +29,37 @@ namespace ChemApp.Console
                 switch (input)
                 {
                     case 1:
-                        System.Console.WriteLine("I'm attempting to perform a reaction");
-                        IEnumerable<IGlassware> listOfProducts = myStorage.GetItems();
+                        Console.WriteLine("I'm attempting to perform a reaction");
+                        var listOfProducts = myStorage.GetItems();
                         System.Threading.Thread.Sleep(500);
                         chemLaboratory.PerformReaction(listOfProducts);
-                        System.Console.ReadKey();
+                        Console.ReadKey();
                         break;
 
                     case 2:
-                        System.Console.WriteLine("Type id of item to wash it");
+                        Console.WriteLine("Type id of item to wash it");
                         int itemID = InputUtility.GetInputFromUser();
-                        var foundItem = myStorage.GetItems().FirstOrDefault(i => i.ItemID == itemID);
+                        var foundItem = myStorage.GetProductById(itemID);
                         if (foundItem != null)
                         {
                             chemLaboratory.WashItem(foundItem);
                         }
                         else
                         {
-                            System.Console.WriteLine($"I didn't find item with ID {itemID}");
+                            var ex = new ItemNotFoundException(itemID.ToString());
+                            DefaultLogger.Instance.Error("Item not found");
+                            DefaultLogger.Instance.Error(ex.ToString());
                         }
+                        Console.ReadKey();
                         break;
 
                     case 3:
-                        System.Console.WriteLine("I'm starting to wash all dirty items in Your storage");
+                        Console.WriteLine("I'm starting to wash all dirty items in Your storage");
                         chemLaboratory.WashDirtyItems(myStorage.GetItems());
                         break;
 
                     case 4:
-                        System.Console.WriteLine("Type id of item to polish:");
+                        Console.WriteLine("Type id of item to polish:");
                         itemID = InputUtility.GetInputFromUser();
                         foundItem = myStorage.GetItems().FirstOrDefault(i => i.ItemID == itemID);
                         if (foundItem != null)
@@ -63,12 +68,12 @@ namespace ChemApp.Console
                         }
                         else
                         {
-                            System.Console.WriteLine($"I didn't find item with ID {itemID}");
+                            Console.WriteLine($"I didn't find item with ID {itemID}");
                         }
                         break;
 
                     case 5:
-                        System.Console.WriteLine("I'm polishing all items in Your lab");
+                        Console.WriteLine("I'm polishing all items in Your lab");
                         chemLaboratory.PolishAllItems(myStorage.GetItems());
                         break;
 
@@ -77,21 +82,21 @@ namespace ChemApp.Console
                         break;
 
                     default:
-                        System.Console.WriteLine("Wrong choice");
+                        Console.WriteLine("Wrong choice");
                         break;
                 }
-                System.Console.Clear();
+                Console.Clear();
             }
         }
 
         private void PrintLaboratory()
         {
-            System.Console.WriteLine("1. Perform a reaction");
-            System.Console.WriteLine("2. Wash an item");
-            System.Console.WriteLine("3. Wash all items");
-            System.Console.WriteLine("4. Polish an item");
-            System.Console.WriteLine("5. Polish all items");
-            System.Console.WriteLine("6. Go back to storage");
+            Console.WriteLine("1. Perform a reaction");
+            Console.WriteLine("2. Wash an item");
+            Console.WriteLine("3. Wash all items");
+            Console.WriteLine("4. Polish an item");
+            Console.WriteLine("5. Polish all items");
+            Console.WriteLine("6. Go back to storage");
         }
     }
 }

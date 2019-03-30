@@ -16,6 +16,8 @@ namespace ChemApp.Domain
 
         List<ProductData> GetItemsThatCanBePurshed();
 
+        IGlassware GetProductById(int id);
+
         decimal GetTotalPriceOfItems();
 
         void ShowItemsThatCanBePurshed();

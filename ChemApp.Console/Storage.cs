@@ -1,11 +1,11 @@
-﻿using ChemApp.Domain;
-using ChemApp.Domain.Abstract;
-using ChemApp.Domain.Concrete;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace ChemApp.Console
+﻿namespace ChemApp.Console
 {
+    using ChemApp.Domain;
+    using ChemApp.Domain.Abstract;
+    using ChemApp.Domain.Concrete;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class Storage : IStorage
     {
         private List<ProductData> productData;
@@ -116,6 +116,11 @@ namespace ChemApp.Console
             {
                 return "Sorry,there's no product with this ID in Your storage";
             }
+        }
+
+        public IGlassware GetProductById(int id)
+        {
+            return this.storageItems.FirstOrDefault(g => g.ItemID == id);
         }
     }
 }

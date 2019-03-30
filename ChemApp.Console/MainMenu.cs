@@ -1,15 +1,16 @@
-﻿using ChemApp.Console.Utilities;
-using ChemApp.Domain.Abstract;
-using ChemApp.Domain.Abstract.ItemMaintainers;
-using ChemApp.Domain.Concrete;
-using ChemApp.Domain.Concrete.Laboratory;
-using ChemApp.Domain.Infrastructure;
-using Ninject;
-using System;
-using System.Linq;
-
-namespace ChemApp.Console
+﻿namespace ChemApp.Console
 {
+    using ChemApp.Console.Utilities;
+    using ChemApp.Domain;
+    using ChemApp.Domain.Abstract;
+    using ChemApp.Domain.Abstract.ItemMaintainers;
+    using ChemApp.Domain.Concrete;
+    using ChemApp.Domain.Concrete.Laboratory;
+    using ChemApp.Domain.Infrastructure;
+    using Ninject;
+    using System;
+    using System.Linq;
+
     internal class MainMenu
     {
         private readonly IMaintainItem itemMaintainer;
@@ -26,26 +27,27 @@ namespace ChemApp.Console
             this.conditionChanger = kernel.Get<IConditionChanger>();
         }
 
-        public void Run(Storage myStorage, ISupplier supplier)
+        public void Run(IStorage myStorage, ISupplier supplier)
         {
             while (true)
             {
                 Welcome();
-                int input = InputUtility.GetInputFromUser();
-                switch (input)
+                int userInput = InputUtility.GetInputFromUser();
+
+                switch (userInput)
                 {
                     case 1:
                         {
                             DisplayStorage(myStorage);
-                            System.Console.ReadKey();
+                            Console.ReadKey();
                         }
                         break;
 
                     case 2:
                         {
                             DisplayListOfProducts(myStorage);
-                            BuyProduct(myStorage);
-                            System.Console.ReadKey();
+                            ChooseProduct(myStorage);
+                            Console.ReadKey();
                         }
                         break;
 
@@ -54,14 +56,14 @@ namespace ChemApp.Console
                             ///validation
                             DisplayStorage(myStorage);
                             ThrowOutProduct(myStorage);
-                            System.Console.ReadLine();
+                            Console.ReadLine();
                         }
                         break;
 
                     case 4:
                         {
                             var chemicalLaboratory = new ChemicalLaboratory(qualityControl, itemMaintainer, qualityChanger, conditionChanger);
-                            System.Console.WriteLine("This is Your chemical laboratory, here You can:");
+                            Console.WriteLine("This is Your chemical laboratory, here You can:");
                             var labMenu = new LabMenu(chemicalLaboratory, myStorage);
                             labMenu.Run();
                         }
@@ -69,48 +71,48 @@ namespace ChemApp.Console
 
                     default:
                         {
-                            System.Console.WriteLine("Wrong choice!");
-                            System.Console.ReadKey();
+                            Console.WriteLine("Wrong choice!");
+                            Console.ReadKey();
                             break;
                         }
                 }
-                System.Console.Clear();
+                Console.Clear();
             }
         }
 
-        private void ThrowOutProduct(Storage myStorage)
+        private void ThrowOutProduct(IStorage myStorage)
         {
-            System.Console.WriteLine();
-            System.Console.WriteLine("Type ID of product You want to throw out");
+            Console.WriteLine();
+            Console.WriteLine("Type ID of product You want to throw out");
             int itemID = InputUtility.GetInputFromUser();
             var result = myStorage.DeleteItem(itemID);
-            System.Console.WriteLine(result);
+            Console.WriteLine(result);
         }
 
-        private void DisplayListOfProducts(Storage myStorage)
+        private void DisplayListOfProducts(IStorage myStorage)
         {
-            System.Console.WriteLine("This is list of products from Your supplier:");
-            System.Console.WriteLine();
+            Console.WriteLine("This is list of products from Your supplier:");
+            Console.WriteLine();
 
             myStorage.ShowItemsThatCanBePurshed();
         }
 
-        private void DisplayStorage(Storage myStorage)
+        private void DisplayStorage(IStorage myStorage)
         {
-            System.Console.WriteLine("This is the list of products in Your storage:");
-            System.Console.WriteLine();
+            Console.WriteLine("This is the list of products in Your storage:");
+            Console.WriteLine();
             myStorage.ShowStorage();
         }
 
-        private void BuyProduct(Storage myStorage)
+        private void ChooseProduct(IStorage myStorage)
         {
-            System.Console.WriteLine("Please,type product ID to buy:");
+            Console.WriteLine("Please,type product ID to buy:");
             int productID = InputUtility.GetInputFromUser();
             var supplierProductList = myStorage.GetItemsThatCanBePurshed();
 
             if (productID < 0 || productID > supplierProductList.Count())
             {
-                System.Console.WriteLine("There's no item with such ID, try again");
+                Console.WriteLine("There's no item with such ID, try again");
                 return;
             }
 
@@ -134,12 +136,12 @@ namespace ChemApp.Console
 
         public void Welcome()
         {
-            System.Console.WriteLine("Welcome to your magazine!");
-            System.Console.WriteLine("1.Check storage");
-            System.Console.WriteLine("2.Add item");
-            System.Console.WriteLine("3.Delete item");
-            System.Console.WriteLine("4.Enter laboratory");
-            System.Console.WriteLine("____________________________________");
+            Console.WriteLine("Welcome to your magazine!");
+            Console.WriteLine("1.Check storage");
+            Console.WriteLine("2.Add item");
+            Console.WriteLine("3.Delete item");
+            Console.WriteLine("4.Enter laboratory");
+            Console.WriteLine("____________________________________");
         }
     }
 }
