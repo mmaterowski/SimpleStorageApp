@@ -40,15 +40,15 @@
 
                     case 2:
                         Console.WriteLine("Type id of item to wash it");
-                        int itemID = InputUtility.GetInputFromUser();
-                        var foundItem = myStorage.GetItemById(itemID);
+                        int choice = InputUtility.GetInputFromUser();
+                        var foundItem = myStorage.GetItemByIndex(choice);
                         if (foundItem != null)
                         {
                             chemLaboratory.WashItem(foundItem);
                         }
                         else
                         {
-                            var ex = new ItemNotFoundException(itemID.ToString());
+                            var ex = new ItemNotFoundException(choice.ToString());
                             DefaultLogger.Instance.Error("Item not found");
                             DefaultLogger.Instance.Error(ex.ToString());
                         }
@@ -62,15 +62,15 @@
 
                     case 4:
                         Console.WriteLine("Type id of item to polish:");
-                        itemID = InputUtility.GetInputFromUser();
-                        foundItem = myStorage.GetItemById(itemID);
+                        choice = InputUtility.GetInputFromUser();
+                        foundItem = myStorage.GetItemByIndex(choice);
                         if (foundItem != null)
                         {
                             chemLaboratory.PolishItem(foundItem);
                         }
                         else
                         {
-                            var ex = new ItemNotFoundException(itemID.ToString());
+                            var ex = new ItemNotFoundException(choice.ToString());
                             DefaultLogger.Instance.Error("Item not found");
                             DefaultLogger.Instance.Error(ex.ToString());
                         }

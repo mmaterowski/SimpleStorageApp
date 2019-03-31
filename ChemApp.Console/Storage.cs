@@ -3,6 +3,7 @@
     using ChemApp.Domain;
     using ChemApp.Domain.Abstract;
     using ChemApp.Domain.Concrete;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -11,17 +12,6 @@
         private List<ProductData> productData;
         private List<IGlassware> storageItems;
         private readonly ISupplier supplier;
-        private int _productID;
-
-        public int ProductID
-        {
-            get { return _productID; }
-            set
-            {
-                _productID = value;
-                _productID++;
-            }
-        }
 
         public Storage(ISupplier supplier)
         {
@@ -57,9 +47,9 @@
 
         public void ShowItemsThatCanBePurshed()
         {
-            foreach (var product in productData)
+            for (int i = 0; i < productData.Count; i++)
             {
-                System.Console.WriteLine($"ID:{product.SupplierID}, Name: {product.Name}, Volume: {product.Volume}, Price: {product.Price:N2}$");
+                Console.WriteLine($"{i}. Name: {productData[i].Name}, Volume: {productData[i].Volume}, Price: {productData[i].Price:N2}$");
             }
         }
 
@@ -74,15 +64,15 @@
         {
             if (storageItems.Count == 0)
             {
-                System.Console.WriteLine("Storage is empty");
+                Console.WriteLine("Storage is empty");
             }
         }
 
         private void PrintStorage()
         {
-            foreach (Glassware piece in storageItems)
+            for (int i = 0; i < storageItems.Count; i++)
             {
-                System.Console.WriteLine($"Name: {piece.Name} ID: {piece.ItemID} Velocity: {piece.Volume}ml Price: {piece.Price:N2}$");
+                Console.WriteLine($"{i}. Name: {storageItems[i].Name} ID: {storageItems[i].Id} Velocity: {storageItems[i].Volume}ml Price: {storageItems[i].Price:N2}$");
             }
         }
 
@@ -95,8 +85,8 @@
         public void ShowTotalPriceOfItems()
         {
             var totalValue = GetTotalPriceOfItems();
-            System.Console.WriteLine("__________________________________________________________");
-            System.Console.WriteLine($"Total items: {storageItems.Count} \t Total Value: {totalValue:N2}");
+            Console.WriteLine("__________________________________________________________");
+            Console.WriteLine($"Total items: {storageItems.Count} \t Total Value: {totalValue:N2}");
         }
 
         public void AddItem(IGlassware piece)
@@ -104,9 +94,9 @@
             storageItems.Add(piece);
         }
 
-        public string DeleteItem(int itemID)
+        public string DeleteItem(IGlassware item)
         {
-            var productToDelete = storageItems.FirstOrDefault(i => i.ItemID == itemID);
+            var productToDelete = storageItems.FirstOrDefault(i => i == item);
             if (productToDelete != null)
             {
                 storageItems.Remove(productToDelete);
@@ -118,9 +108,14 @@
             }
         }
 
-        public IGlassware GetItemById(int id)
+        public IGlassware GetItemById(Guid id)
         {
-            return this.storageItems.FirstOrDefault(g => g.ItemID == id);
+            return this.storageItems.FirstOrDefault(g => g.Id == id);
+        }
+
+        public IGlassware GetItemByIndex(int index)
+        {
+            return storageItems[index];
         }
     }
 }

@@ -1,22 +1,23 @@
 ﻿using ChemApp.Domain.Abstract;
 using ChemApp.Domain.Concrete;
+using System;
 using System.Collections.Generic;
 
 namespace ChemApp.Domain
 {
     public interface IStorage
     {
-        int ProductID { get; set; }
-
         void AddItem(IGlassware piece);
 
-        string DeleteItem(int itemID);
+        string DeleteItem(IGlassware item);
 
         List<IGlassware> GetItems();
 
         List<ProductData> GetItemsThatCanBePurshed();
 
-        IGlassware GetItemById(int id);
+        IGlassware GetItemById(Guid id);
+
+        IGlassware GetItemByIndex(int index);
 
         decimal GetTotalPriceOfItems();
 

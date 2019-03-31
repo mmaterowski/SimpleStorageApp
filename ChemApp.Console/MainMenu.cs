@@ -27,7 +27,7 @@
             this.conditionChanger = kernel.Get<IConditionChanger>();
         }
 
-        public void Run(IStorage myStorage, ISupplier supplier)
+        public void Run(IStorage storage, ISupplier supplier)
         {
             while (true)
             {
@@ -38,15 +38,15 @@
                 {
                     case 1:
                         {
-                            DisplayStorage(myStorage);
+                            DisplayStorage(storage);
                             Console.ReadKey();
                         }
                         break;
 
                     case 2:
                         {
-                            DisplayListOfProducts(myStorage);
-                            ChooseProduct(myStorage);
+                            DisplayListOfProducts(storage);
+                            ChooseProduct(storage);
                             Console.ReadKey();
                         }
                         break;
@@ -54,17 +54,17 @@
                     case 3:
                         {
                             ///validation
-                            DisplayStorage(myStorage);
-                            ThrowOutProduct(myStorage);
+                            DisplayStorage(storage);
+                            ThrowOutProduct(storage);
                             Console.ReadLine();
                         }
                         break;
 
                     case 4:
                         {
-                            var chemicalLaboratory = new ChemicalLaboratory(qualityControl, itemMaintainer, qualityChanger, conditionChanger);
+                            var laboratory = new ChemicalLaboratory(qualityControl, itemMaintainer, qualityChanger, conditionChanger);
                             Console.WriteLine("This is Your chemical laboratory, here You can:");
-                            var labMenu = new LabMenu(chemicalLaboratory, myStorage);
+                            var labMenu = new LabMenu(laboratory, storage);
                             labMenu.Run();
                         }
                         break;
@@ -83,10 +83,19 @@
         private void ThrowOutProduct(IStorage myStorage)
         {
             Console.WriteLine();
-            Console.WriteLine("Type ID of product You want to throw out");
-            int itemID = InputUtility.GetInputFromUser();
-            var result = myStorage.DeleteItem(itemID);
-            Console.WriteLine(result);
+            Console.WriteLine("Type number of product You want to throw out");
+            int choice = InputUtility.GetInputFromUser();
+            var items = myStorage.GetItems();
+            if (choice < 0 || choice > items.Count())
+            {
+                Console.WriteLine("There's no item with such number, try again");
+                return;
+            }
+            else
+            {
+                var result = myStorage.DeleteItem(items[choice]);
+                Console.WriteLine(result);
+            }
         }
 
         private void DisplayListOfProducts(IStorage myStorage)
@@ -106,32 +115,30 @@
 
         private void ChooseProduct(IStorage myStorage)
         {
-            Console.WriteLine("Please,type product ID to buy:");
-            int productID = InputUtility.GetInputFromUser();
+            Console.WriteLine("Please,type number of product You want to buy:");
+            int choice = InputUtility.GetInputFromUser();
             var supplierProductList = myStorage.GetItemsThatCanBePurshed();
 
-            if (productID < 0 || productID > supplierProductList.Count())
+            if (choice < 0 || choice > supplierProductList.Count())
             {
-                Console.WriteLine("There's no item with such ID, try again");
+                Console.WriteLine("There's no item with such number, try again");
                 return;
             }
 
-            //figure out where and how to assing product IDs
-            // change pricing so it makes sense
             var rand = new Random();
             var piece = new Glassware
             {
-                Name = supplierProductList[productID].Name,
-                Volume = supplierProductList[productID].Volume,
-                Price = supplierProductList[productID].Price * ((decimal)rand.Next(95, 99) / 1000),
-                ItemID = rand.Next(0, 1000),
+                Name = supplierProductList[choice].Name,
+                Volume = supplierProductList[choice].Volume,
+                Price = supplierProductList[choice].Price,
+                Id = Guid.NewGuid(),
                 Condition = "New",
                 Quality = 100,
                 IsClean = true
             };
 
             myStorage.AddItem(piece);
-            System.Console.WriteLine($"Item {piece.Name} was added!");
+            Console.WriteLine($"Item {piece.Name} was added!");
         }
 
         public void Welcome()

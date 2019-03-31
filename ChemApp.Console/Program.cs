@@ -17,6 +17,11 @@ namespace ChemApp.Console
             var myStorage = new Storage(supplier);
             var mainMenu = new MainMenu();
             mainMenu.Run(myStorage, supplier);
+
+            //TODO
+            //1.Guid-based id for Items
+            //2.Better buying system
+            //3.Repository + database
         }
     }
 }
